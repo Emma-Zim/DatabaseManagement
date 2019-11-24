@@ -43,8 +43,8 @@ create table Album
 
 create table SongAlbum
 (
-	songId int null,
-	albumId int null,
+	songId int not null,
+	albumId int not null,
 	constraint SongAlbum_pk
 		primary key (songId, albumId),
 	constraint SongAlbum_pk
@@ -67,8 +67,8 @@ create table Playlist
 
 create table SongPlaylist
 (
-	songId int null,
-	playlistId int null,
+	songId int not null,
+	playlistId int not null,
 	constraint SongPlaylist_pk
 		primary key (songId, playlistId),
 	constraint SongPlaylist_Playlist_playlistId_fk
@@ -90,8 +90,8 @@ create table Concert
 
 create table SongConcert
 (
-	songId int null,
-	concertId int null,
+	songId int not null,
+	concertId int not null,
 	constraint SongConcert_pk
 		primary key (songId, concertId),
 	constraint SongConcert_Concert_concertId_fk
@@ -113,8 +113,8 @@ create table Band
 
 create table BandConcert
 (
-	bandId int null,
-	concertId int null,
+	bandId int not null,
+	concertId int not null,
 	constraint BandConcert_pk
 		primary key (bandId, concertId),
 	constraint BandConcert_Band_bandId_fk
@@ -127,8 +127,8 @@ create table BandConcert
 
 create table SongBand
 (
-	songId int null,
-	bandId int null,
+	songId int not null,
+	bandId int not null,
 	constraint SongBand_pk
 		primary key (songId, bandId),
 	constraint SongBand_Band_bandId_fk
@@ -149,13 +149,13 @@ create table Artist
 
 create table BandArtist
 (
-	bandId int null,
-	artistId int null,
+	bandId int not null,
+	artistId int not null,
 	constraint BandArtist_pk
 		primary key (bandId, artistId),
 	constraint BandArtist_Artist_artistId_fk
 		foreign key (artistId) references Artist (artistId)
-			on update cascade on delete set null,
+			on update cascade on delete cascade,
 	constraint BandArtist_Band_bandId_fk
 		foreign key (bandId) references Band (bandId)
 			on update cascade on delete cascade
