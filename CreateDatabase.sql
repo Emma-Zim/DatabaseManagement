@@ -1,6 +1,6 @@
 create table Songs
 (
-	songId int auto_increment,
+	songId char(5) not null,
 	duration TIME default NULL null,
 	name varchar(100) not null,
 	lyrics longtext default NULL null,
@@ -10,7 +10,7 @@ create table Songs
 
 create table Label
 (
-	labelId int auto_increment,
+	labelId char(5) not null,
 	name varchar(100) null,
 	constraint Label_pk
 		primary key (labelId)
@@ -18,7 +18,7 @@ create table Label
 
 create table Genre
 (
-	genreId int auto_increment,
+	genreId char(5) not null,
 	name varchar(100) null,
 	constraint Genre_pk
 		primary key (genreId)
@@ -26,11 +26,11 @@ create table Genre
 
 create table Album
 (
-	albumId int not null,
+	albumId char(5) not null,
 	name varchar(100) default NULL null,
 	recordingType ENUM('Studio', 'Live', 'Solo', 'Tribute', 'Cover') default 'Studio' null,
-	genreId int null,
-	labelId int null,
+	genreId char(5) not null,
+	labelId char(5) not null,
 	constraint Album_pk
 		primary key (albumId),
 	constraint Album_Genre_genreId_fk
@@ -43,8 +43,8 @@ create table Album
 
 create table SongAlbum
 (
-	songId int not null,
-	albumId int not null,
+	songId char(5) not null,
+	albumId char(5) not null,
 	constraint SongAlbum_pk
 		primary key (songId, albumId),
 	constraint SongAlbum_pk
@@ -59,7 +59,7 @@ create table SongAlbum
 
 create table Playlist
 (
-	playlistId int auto_increment,
+	playlistId char(5) not null,
 	name varchar(100) null,
 	constraint Playlist_pk
 		primary key (playlistId)
@@ -67,8 +67,8 @@ create table Playlist
 
 create table SongPlaylist
 (
-	songId int not null,
-	playlistId int not null,
+	songId char(5) not null,
+	playlistId char(5) not null,
 	constraint SongPlaylist_pk
 		primary key (songId, playlistId),
 	constraint SongPlaylist_Playlist_playlistId_fk
@@ -81,7 +81,7 @@ create table SongPlaylist
 
 create table Concert
 (
-	concertId int auto_increment,
+	concertId char(5) not null,
 	location varchar(100) null,
 	date date null,
 	constraint Concert_pk
@@ -90,8 +90,8 @@ create table Concert
 
 create table SongConcert
 (
-	songId int not null,
-	concertId int not null,
+	songId char(5) not null,
+	concertId char(5) not null,
 	constraint SongConcert_pk
 		primary key (songId, concertId),
 	constraint SongConcert_Concert_concertId_fk
@@ -104,7 +104,7 @@ create table SongConcert
 
 create table Band
 (
-	bandId int auto_increment,
+	bandId char(5) not null,
 	name varchar(100) null,
 	size int default 1 not null,
 	constraint Band_pk
@@ -113,8 +113,8 @@ create table Band
 
 create table BandConcert
 (
-	bandId int not null,
-	concertId int not null,
+	bandId char(5) not null,
+	concertId char(5) not null,
 	constraint BandConcert_pk
 		primary key (bandId, concertId),
 	constraint BandConcert_Band_bandId_fk
@@ -127,8 +127,8 @@ create table BandConcert
 
 create table SongBand
 (
-	songId int not null,
-	bandId int not null,
+	songId char(5) not null,
+	bandId char(5) not null,
 	constraint SongBand_pk
 		primary key (songId, bandId),
 	constraint SongBand_Band_bandId_fk
@@ -141,7 +141,7 @@ create table SongBand
 
 create table Artist
 (
-	artistId int auto_increment,
+	artistId char(5) not null,
 	name varchar(100) null,
 	constraint Artist_pk
 		primary key (artistId)
@@ -149,8 +149,8 @@ create table Artist
 
 create table BandArtist
 (
-	bandId int not null,
-	artistId int not null,
+	bandId char(5) not null,
+	artistId char(5) not null,
 	constraint BandArtist_pk
 		primary key (bandId, artistId),
 	constraint BandArtist_Artist_artistId_fk
