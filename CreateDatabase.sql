@@ -35,10 +35,10 @@ create table Album
 		primary key (albumId),
 	constraint Album_Genre_genreId_fk
 		foreign key (genreId) references Genre (genreId)
-			on update cascade on delete set null,
+			on update restrict on delete set null,
 	constraint Album_Label_labelId_fk
 		foreign key (labelId) references Label (labelId)
-			on update cascade on delete set null
+			on update restrict on delete set null
 );
 
 create table SongAlbum
@@ -51,10 +51,10 @@ create table SongAlbum
 		unique (songId),
 	constraint SongAlbum_Album_albumId_fk
 		foreign key (albumId) references Album (albumId)
-			on update cascade on delete cascade,
+			on update restrict on delete restrict,
 	constraint SongAlbum_Songs_songId_fk
 		foreign key (songId) references Songs (songId)
-			on update cascade on delete cascade
+			on update restrict on delete restrict
 );
 
 create table Playlist
@@ -73,10 +73,10 @@ create table SongPlaylist
 		primary key (songId, playlistId),
 	constraint SongPlaylist_Playlist_playlistId_fk
 		foreign key (playlistId) references Playlist (playlistId)
-			on update cascade on delete cascade,
+			on update restrict on delete restrict,
 	constraint SongPlaylist_Songs_songId_fk
 		foreign key (songId) references Songs (songId)
-			on update cascade on delete cascade
+			on update restrict on delete restrict
 );
 
 create table Concert
@@ -96,10 +96,10 @@ create table SongConcert
 		primary key (songId, concertId),
 	constraint SongConcert_Concert_concertId_fk
 		foreign key (concertId) references Concert (concertId)
-			on update cascade on delete cascade,
+			on update restrict on delete restrict,
 	constraint SongConcert_Songs_songId_fk
 		foreign key (songId) references Songs (songId)
-			on update cascade on delete cascade
+			on update restrict on delete restrict
 );
 
 create table Band
@@ -119,10 +119,10 @@ create table BandConcert
 		primary key (bandId, concertId),
 	constraint BandConcert_Band_bandId_fk
 		foreign key (bandId) references Band (bandId)
-			on update cascade on delete cascade,
+			on update restrict on delete restrict,
 	constraint BandConcert_Concert_concertId_fk
 		foreign key (concertId) references Concert (concertId)
-			on update cascade on delete cascade
+			on update restrict on delete restrict
 );
 
 create table SongBand
@@ -133,10 +133,10 @@ create table SongBand
 		primary key (songId, bandId),
 	constraint SongBand_Band_bandId_fk
 		foreign key (bandId) references Band (bandId)
-			on update cascade on delete cascade,
+			on update restrict on delete restrict,
 	constraint SongBand_Songs_songId_fk
 		foreign key (songId) references Songs (songId)
-			on update cascade on delete cascade
+			on update restrict on delete restrict
 );
 
 create table Artist
@@ -155,8 +155,8 @@ create table BandArtist
 		primary key (bandId, artistId),
 	constraint BandArtist_Artist_artistId_fk
 		foreign key (artistId) references Artist (artistId)
-			on update cascade on delete cascade,
+			on update restrict on delete restrict,
 	constraint BandArtist_Band_bandId_fk
 		foreign key (bandId) references Band (bandId)
-			on update cascade on delete cascade
+			on update restrict on delete restrict
 );
