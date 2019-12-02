@@ -129,7 +129,7 @@ create table SongBand
 (
 	songId char(5) not null,
 	bandId char(5) not null,
-	ownership enum('Origin', 'Cover') default 'Origin' null,
+	ownership ENUM('Origin', 'Cover') default 'Origin' null,
 	constraint SongBand_pk
 		primary key (songId, bandId),
 	constraint SongBand_Band_bandId_fk
