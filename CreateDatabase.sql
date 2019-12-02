@@ -29,8 +29,8 @@ create table Album
 	albumId char(5) not null,
 	name varchar(100) default NULL null,
 	recordingType ENUM('Studio', 'Live') default 'Studio' null,
-	genreId char(5) not null,
-	labelId char(5) not null,
+	genreId char(5) null,
+	labelId char(5) null,
 	constraint Album_pk
 		primary key (albumId),
 	constraint Album_Genre_genreId_fk
