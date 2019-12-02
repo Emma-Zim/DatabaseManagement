@@ -28,7 +28,7 @@ create table Album
 (
 	albumId char(5) not null,
 	name varchar(100) default NULL null,
-	recordingType ENUM('Studio', 'Live', 'Solo', 'Tribute', 'Cover') default 'Studio' null,
+	recordingType ENUM('Studio', 'Live') default 'Studio' null,
 	genreId char(5) not null,
 	labelId char(5) not null,
 	constraint Album_pk
@@ -129,6 +129,7 @@ create table SongBand
 (
 	songId char(5) not null,
 	bandId char(5) not null,
+	ownership enum('Origin', 'Cover') default 'Origin' null,
 	constraint SongBand_pk
 		primary key (songId, bandId),
 	constraint SongBand_Band_bandId_fk
