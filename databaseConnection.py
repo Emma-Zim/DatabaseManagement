@@ -1,18 +1,29 @@
 import mysql.connector
 
-def CreateConnection():
-    try:
-        connection = mysql.connector.connect(host='leia.cs.spu.edu', database='zimmermane_db', user='zimmermane', password='zimmermane11$4410X')
-        return connection
+class DatabaseConnection():
+    def __init__(self):
+        self.connection = self.CreateConnection()
+        self.cursor = self.CreateCursor()
 
-    except mysql.connector.Error as failure:
-        print("Error connecting to the database", failure)
+    def CreateConnection(self):
+        try:
+            connection = mysql.connector.connect(host='leia.cs.spu.edu', database='zimmermane_db', user='zimmermane', password='zimmermane11$4410X')
+            return connection
 
-def CloseConnection(c):
-    c.close()
-    print("Closed connection to the database")
+        except mysql.connector.Error as failure:
+            print("Error connecting to the database", failure)
+
+    def CloseConnection(self):
+        self.connection.close()
+        print("Closed connection to the database")
+
+    def CreateCursor(self):
+        return self.connection.cursor()
+
+    def CloseCursor(self):
+        self.cursor.close()
 
 
-def SelectConcert(c):
-    c.execute("""SELECT * FROM Concert;""")
-    return c.fetchall()
+    def SelectConcert(self):
+        self.cursor.execute("""SELECT * FROM Concert;""")
+        return self.cursor.fetchall()
