@@ -25,6 +25,5 @@ class DatabaseConnection():
 
 
     def SelectConcert(self):
-        self.cursor.execute("""SELECT B.name, C.location, C.date FROM Concert
-                                JOIN;""")
+        self.cursor.execute("""SELECT * FROM Concert;""")
         return self.cursor.fetchall()
