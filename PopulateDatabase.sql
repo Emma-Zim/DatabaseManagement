@@ -28,7 +28,7 @@ insert into SongAlbum (songId, albumId) VALUES ('S0002', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0003', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0004', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0005', 'A0001');
-insert into SongBand (songId, bandId, ) VALUES ('S0001', 'B0001');
+insert into SongBand (songId, bandId) VALUES ('S0001', 'B0001');
 insert into SongBand (songId, bandId) VALUES ('S0002', 'B0001');
 insert into SongBand (songId, bandId) VALUES ('S0003', 'B0001');
 insert into SongBand (songId, bandId) VALUES ('S0004', 'B0001');
@@ -425,7 +425,7 @@ We were born to try
 To see each other through
 To know and love ourselves and others well
 Is the most difficult and meaningful
-Work we''ll ever do')
+Work we''ll ever do');
 insert into SongAlbum (songId, albumId) VALUES ('S0013', 'A0003');
 insert into SongAlbum (songId, albumId) VALUES ('S0014', 'A0003');
 insert into SongAlbum (songId, albumId) VALUES ('S0015', 'A0003');
@@ -563,7 +563,7 @@ insert into SongAlbum (songId, albumId) VALUES ('S0039', 'A0007');
 insert into SongBand (songId, bandId) VALUES ('S0035', 'B0006');
 insert into SongBand (songId, bandId) VALUES ('S0036', 'B0006');
 insert into SongBand (songId, bandId) VALUES ('S0037', 'B0006');
-insert into SongBand (songId, bandId) VALUES ('S0038', 'B0006';
+insert into SongBand (songId, bandId) VALUES ('S0038', 'B0006');
 insert into SongBand (songId, bandId) VALUES ('S0039', 'B0006');
 
 
@@ -602,7 +602,7 @@ insert into SongAlbum (songId, albumId) VALUES ('S0049', 'A0008');
 insert into SongAlbum (songId, albumId) VALUES ('S0050', 'A0008');
 insert into SongAlbum (songId, albumId) VALUES ('S0051', 'A0008');
 insert into SongBand (songId, bandId) VALUES ('S0040', 'B0004');
-insert into SongBand (songId, bandId) VALUES ('S0041', 'B0004')
+insert into SongBand (songId, bandId) VALUES ('S0041', 'B0004');
 insert into SongBand (songId, bandId) VALUES ('S0042', 'B0004');
 insert into SongBand (songId, bandId) VALUES ('S0043', 'B0004');
 insert into SongBand (songId, bandId) VALUES ('S0044', 'B0004');
@@ -712,7 +712,7 @@ insert into SongAlbum (songId, albumId) VALUES ('S0063', 'A0010');
 insert into SongAlbum (songId, albumId) VALUES ('S0064', 'A0010');
 insert into SongAlbum (songId, albumId) VALUES ('S0065', 'A0010');
 insert into SongAlbum (songId, albumId) VALUES ('S0066', 'A0010');
-insert into SongAlbum (songId, albumId) VALUES ('S0067', 'A0010';
+insert into SongAlbum (songId, albumId) VALUES ('S0067', 'A0010');
 insert into SongAlbum (songId, albumId) VALUES ('S0068', 'A0010');
 insert into SongAlbum (songId, albumId) VALUES ('S0069', 'A0010');
 insert into SongAlbum (songId, albumId) VALUES ('S0070', 'A0010');
@@ -857,7 +857,7 @@ insert into SongAlbum (songId, albumId) VALUES ('S0090', 'A0012');
 insert into SongAlbum (songId, albumId) VALUES ('S0091', 'A0012');
 insert into SongAlbum (songId, albumId) VALUES ('S0093', 'A0012');
 insert into SongAlbum (songId, albumId) VALUES ('S0094', 'A0012');
-)insert into SongBand (songId, bandId) VALUES ('S0085', 'B0010');
+insert into SongBand (songId, bandId) VALUES ('S0085', 'B0010');
 insert into SongBand (songId, bandId) VALUES ('S0086', 'B0010');
 insert into SongBand (songId, bandId) VALUES ('S0087', 'B0010');
 insert into SongBand (songId, bandId) VALUES ('S0088', 'B0010');
@@ -1059,22 +1059,22 @@ insert into SongAlbum (songId, albumId) VALUES ('S0129', 'A0016');
 insert into SongAlbum (songId, albumId) VALUES ('S0130', 'A0016');
 insert into SongAlbum (songId, albumId) VALUES ('S0131', 'A0016');
 insert into SongAlbum (songId, albumId) VALUES ('S0132', 'A0016');
-insert into SongBand (songId, bandId, ownership) VALUES ('S0117', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0118', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0119', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0120', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0121', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0122', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0123', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0124', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0125', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0126', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0127', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0128', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0129', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0130', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0131', 'B0014', 'Cover')
-insert into SongBand (songId, bandId, ownership) VALUES ('S0132', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0117', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0118', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0119', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0120', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0121', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0122', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0123', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0124', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0125', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0126', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0127', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0128', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0129', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0130', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0131', 'B0014', 'Cover');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0132', 'B0014', 'Cover');
 
 
 /*
@@ -1117,7 +1117,7 @@ insert into SongBand (songId, bandId) VALUES ('S0129', 'B0016');
 
 /*
  Band: The String Mob
-Genre: a capella
+ Genre: a capella
  Label: RCA Records
  Album: A Pentatonix Christmas Deluxe
  Songs: 132
