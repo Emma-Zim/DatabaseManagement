@@ -1,7 +1,7 @@
 /*
  Band: Jaymes Young
  Artist: Jaymes Young
- Genre: Alternative Rock, Indie Pop
+ Genre: Alternative Rock, 2. Indie Pop
  Label: Atlantic Records
  Album: Habits Of My Heart EP
  Songs: Moondust, I'll Be Good, What Should I Do, Come Back For Me, Habits Of My Heart
@@ -28,7 +28,7 @@ insert into SongAlbum (songId, albumId) VALUES ('S0002', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0003', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0004', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0005', 'A0001');
-insert into SongBand (songId, bandId) VALUES ('S0001', 'B0001');
+insert into SongBand (songId, bandId, ) VALUES ('S0001', 'B0001');
 insert into SongBand (songId, bandId) VALUES ('S0002', 'B0001');
 insert into SongBand (songId, bandId) VALUES ('S0003', 'B0001');
 insert into SongBand (songId, bandId) VALUES ('S0004', 'B0001');
@@ -65,11 +65,13 @@ insert into SongConcert (songId, concertId) VALUE ('S0006', 'C0001');
 
 /*
  Band: Phil Good
+ Artist: Phil Good
  Genre: Electronic
  Label: Heard Well
  Album: Growing Up
  Songs: Be Somebody, Growing Up, I'll Fix It, I Miss You, Sleeping In, Better
  Concert: Jaymes Young, Phil Good
+ Playlist: None
  */
 insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0003', 'Growing Up', 'Studio', 'G0003', 'L0002');
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0007', '00:03:07', 'Be Somebody', null);
@@ -102,7 +104,7 @@ insert into SongConcert (songId, concertId) VALUE ('S0007', 'C0001');
  Label: Asteroid B-612
  Album: Atlas: Enneagram
  Songs: One, Two, Three, Four, Five, Six, Seven, Eight, Nine
- Playlist: Favorites
+ Concert: None
 */
 insert into Band (bandId, name, size) VALUES ('B0003', 'Sleeping At Last', 3);
 insert into Artist (artistId, name) VALUES ('R0003', 'Ryan O''Neal');
@@ -453,6 +455,8 @@ insert into SongPlaylist (songId, playlistId) VALUE ('S0018', 'P0001');
  Label: Mercury Records
  Album: The Way It Was
  Songs: White Dress, You And Me, Something To Believe In, Forever And Always, What I Know, American Secrets, Kiss Me Slowly, Halfway, Philadelphia
+ Concert: None
+ Playlist: NOne
 */
 insert into Band (bandId, name, size) VALUES ('B0004', 'Parachute', 5);
 insert into Artist (artistId, name) VALUES ('R0006', 'Will Anderson');
@@ -504,6 +508,9 @@ insert into SongPlaylist (songId, playlistId) VALUES ('S0025', 'P0002');
  Genre: Indie Rock
  Label: SideOneDummy
  Album: Back In The Jazz Coffee
+ Songs: Lots
+ Concert: None
+ Playlist: None
 */
 insert into Band (bandId, name, size) VALUES ('B0005', 'AJJ', 4);
 insert into Artist (artistId, name) VALUES ('R0011', 'Sean Bonnette');
@@ -537,6 +544,8 @@ insert into SongBand (songId, bandId) VALUES ('S0034', 'B0005');
  Label: Mercury Records
  Album: The Way It Was
  Songs: White Dress, You And Me, Something To Believe In, Forever And Always, What I Know, American Secrets, Kiss Me Slowly, Halfway, Philidelphia
+ Concert: None
+ Playlist: None
 */
 insert into Band (bandId, name, size) VALUES ('B0006', 'Anxiety Machine', 1);
 insert into BandArtist (bandId, artistId) VALUES ('B0006', 'R0014');
@@ -560,10 +569,11 @@ insert into SongBand (songId, bandId) VALUES ('S0039', 'B0006');
 
 /*
  Band: Parachute
- Genre:
- Label:
+ Genre: Pop Rock
+ Label: Mercury
  Album: Wide Awake
  Songs: Lonely With Me
+ Concert: None
  Playlist: Emma's Songs
 */
 insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0008', 'Wide Awake', 'Studio', 'G0005', 'L0004');
@@ -609,12 +619,13 @@ insert into SongPlaylist (songId, playlistId) VALUES ('S0044', 'P0002');
 
 /*
  Band: Parachute
+ Artists: 5
  Genre: 5
  Label: 4
  Album: Parachute
  Songs: Dance Around It
- Playlist: Emma's Songs
  Concert: Parachute
+ Playlist: Emma's Songs
 */
 insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0009', 'Parachute', 'Studio', 'G0005', 'L0004');
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0052', '00:03:44', 'Young', null);
@@ -664,10 +675,12 @@ insert into SongConcert (songId, concertId) VALUE ('S0054', 'C0002');
 
 /*
  Band: Mumford & Sons
+ Members: 4
  Genre: Rock
  Label: Gentlemen Of The Road'
  Album: Babel
  Songs: Hopeless Wanderer, Below My Feet, Not With Haste
+ Concert: None
  Playlist: Emma's Songs
 */
 insert into Band (bandId, name, size) VALUES ('B0007', 'Mumford & Sons', 4);
@@ -725,10 +738,12 @@ insert into SongPlaylist (songId, playlistId) VALUE ('S0073', 'P0002');
 
 /*
  Band: Coldplay
+ Members: 5
  Genre: Alternative Rock
  Label: Capitol Records
  Album: A Head Full Of Dreams
  Songs: Everglow, Hymn For The Weekend
+ Concert: None
  Playlist: Emma's Songs
 */
 insert into Band (bandId, name, size) VALUES ('B0008', 'Coldplay', 5);
@@ -788,6 +803,8 @@ insert into SongPlaylist (songId, playlistId) VALUE ('S0077', 'P0002');
  Label: 7
  Album: 11, A Head Full Of Dreams
  Songs: 79, Fun
+ Concert: None
+ Playlist: None
 */
 insert into Band (bandId, name, size) VALUES ('B0009', 'Tove Lo', 1);
 insert into Artist (artistId, name) VALUES ('R0024', 'Tove Lo');
@@ -798,10 +815,11 @@ insert into SongBand (songId, bandId) VALUES ('S0079', 'B0009');
 /*
  Band: Panic! At The Disco
  Artist: Brendon Urie
- Genre:
- Label:
+ Genre: Pop Punk
+ Label: Fueled By Ramen
  Album: Vices & Virtues
  Songs: Sarah Smiles
+ Concert: None
  Playlist: Emma's Songs
 */
 insert into Band (bandId, name, size) VALUES ('B0010', 'Panic! At The Disco', 6);
@@ -854,8 +872,12 @@ insert into SongPlaylist (songId, playlistId) VALUE ('S0093', 'P0002');
 
 /*
  Band: Panic! At The Disco
+ Artists: 6
+ Genre: Pop Punk
+ Label: Fueled By Ramen
  Album: Too Weird To Live, Too Rare To Die!
  Songs: This Is Gospel
+ Concert: None
  Playlist: Emma's Songs
 */
 insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0013', 'Too Weird To Live, Too Rare To Die!', 'Studio', 'G0007', 'L0008');
@@ -894,11 +916,13 @@ insert into SongPlaylist (songId, playlistId) VALUES ('S0095', 'P0002');
 
 /*
  Band: LOLO
- Artist: LOLO
- Genre: 7
- Label: 8
- Album: 13 Too Werid...
+ Artist: 1
+ Genre: Pop Punk
+ Label: Fueled By Ramen
+ Album: Too Weird To Live, Too Rare To Die!
  Songs: 96, Miss Jackson
+ Concert: None
+ Playlist: Emma's Songs
 */
 insert into Band (bandId, name, size) VALUES ('B0011', 'LOLO', 1);
 insert into Artist (artistId, name) VALUES ('R0031', 'LOLO');
@@ -908,10 +932,13 @@ insert into SongBand (songId, bandId) VALUES ('S0096', 'B0011');
 
 /*
  Band: The Front Bottoms
- Genre:
- Label:
+ Artists: 3
+ Genre: Indie
+ Label: Atlantic Records
  Album: Rose
- Songs:
+ Songs: Lots
+ Concerts: None
+ Playlist: None
 */
 insert into Band (bandId, name, size) VALUES ('B0012', 'The Front Bottoms', 3);
 insert into Artist (artistId, name) VALUES ('R0032', 'Brian Stella');
@@ -944,16 +971,18 @@ insert into SongBand (songId, bandId) VALUES ('S0110', 'B0008');
 
 /*
  Band: Matt Maeson
+ Artists: 1
  Genre: 8, Indie
  Label: Atlantic Records
  Album: Who Killed Matt Maeson-Live
- Songs:
+ Songs: Lots
+ Concert: None
  Playlist: Favorites
 */
 insert into Band (bandId, name, size) VALUES ('B0013', 'Matt Maeson', 1);
 insert into Artist (artistId, name) VALUES ('R0035', 'Matt Maeson');
 insert into BandArtist (bandId, artistId) VALUES ('B0013', 'R0035');
-insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0015', 'Rose', 'Live', 'G0008', 'L0001');
+insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0015', 'Who Killed Matt Maeson', 'Live', 'G0008', 'L0001');
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0111', '00:03:58', 'Grave Digger', null);
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0112', '00:03:35', 'Cringe' , null);
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0113', '00:03:00', 'Me And My Friends Are Lonely' , null);
@@ -972,3 +1001,138 @@ insert into SongBand (songId, bandId) VALUES ('S0113', 'B0013');
 insert into SongBand (songId, bandId) VALUES ('S0114', 'B0013');
 insert into SongBand (songId, bandId) VALUES ('S0115', 'B0013');
 insert into SongBand (songId, bandId) VALUES ('S0116', 'B0013');
+
+
+/*
+ Band: Pentatonix
+ Artists: 5
+ Genre: a capella
+ Label: RCA Records
+ Album: A Pentatonix Christmas Deluxe
+ Songs: Lots
+ Concert: None
+ Playlist: Covers
+*/
+insert into Band (bandId, name, size) VALUES ('B0014', 'Pentatonix', 1);
+insert into Artist (artistId, name) VALUES ('R0036', 'Scott Hoying');
+insert into Artist (artistId, name) VALUES ('R0037', 'Mitch Grassi');
+insert into Artist (artistId, name) VALUES ('R0038', 'Kirstin Maldonado');
+insert into Artist (artistId, name) VALUES ('R0039', 'Kevin Olusola');
+insert into Artist (artistId, name) VALUES ('R0040', 'Matt Sallee');
+insert into BandArtist (bandId, artistId) VALUES ('B0014', 'R0036');
+insert into BandArtist (bandId, artistId) VALUES ('B0014', 'R0037');
+insert into BandArtist (bandId, artistId) VALUES ('B0014', 'R0038');
+insert into BandArtist (bandId, artistId) VALUES ('B0014', 'R0039');
+insert into BandArtist (bandId, artistId) VALUES ('B0014', 'R0040');
+insert into Genre (genreId, name) VALUES ('G0009', 'A Capella');
+insert into Label (labelId, name) VALUES ('L0009', 'RCA Records');
+insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0016', 'A Pentatonix Christmas Deluxe', 'Studio', 'G0009', 'L0009');
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0117', '00:03:58', 'O Come, All Ye Faithful', null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0118', '00:03:35', 'God Rest Ye Merry Gentlemen' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0119', '00:03:00', 'White Christmas (feat. The Manhattan Transfer' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0120', '00:04:27', 'I''ll Be Home For Christmas', null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0121', '00:03:10', 'Up On The Housetop' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0122', '00:02:54', 'The Christmas Sing-Along' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0123', '00:03:58', 'Coventry Carol', null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0124', '00:03:35', 'Hallelujah' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0125', '00:03:00', 'Coldest Winter' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0126', '00:04:27', 'Good To Be Bad' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0127', '00:03:10', 'Merry Christmas, Happy Holidays' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0128', '00:02:54', 'Deck The Halls' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0129', '00:03:58', 'How Great Thou Art (feat. Jennifer Hudson', null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0130', '00:03:35', 'Away In A Manger' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0131', '00:03:00', 'Let It Snow! Let It Snow! Let It Snow!' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0132', '00:04:27', 'Hallelujah (feat. The String Mob' , null);
+insert into SongAlbum (songId, albumId) VALUES ('S0117', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0118', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0119', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0120', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0121', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0122', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0123', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0124', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0125', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0126', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0127', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0128', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0129', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0130', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0131', 'A0016');
+insert into SongAlbum (songId, albumId) VALUES ('S0132', 'A0016');
+insert into SongBand (songId, bandId, ownership) VALUES ('S0117', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0118', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0119', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0120', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0121', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0122', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0123', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0124', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0125', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0126', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0127', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0128', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0129', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0130', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0131', 'B0014', 'Cover')
+insert into SongBand (songId, bandId, ownership) VALUES ('S0132', 'B0014', 'Cover')
+
+
+/*
+ Band: The Manhattan Transfer
+ Artist: 4
+ Genre: a capella
+ Label: RCA Records
+ Album: A Pentatonix Christmas Deluxe
+ Songs: 119
+ Concert: None
+ Playlist: Covers
+*/
+insert into Band (bandId, name, size) VALUES ('B0015', 'The Manhattan Transfer', 4);
+insert into Artist (artistId, name) VALUES ('R0041', 'Alan Paul');
+insert into Artist (artistId, name) VALUES ('R0042', 'Janis Siegel');
+insert into Artist (artistId, name) VALUES ('R0043', 'Cheryl Bentyne');
+insert into Artist (artistId, name) VALUES ('R0044', 'Trist Curless');
+insert into BandArtist (bandId, artistId) VALUES ('B0015', 'R0041');
+insert into BandArtist (bandId, artistId) VALUES ('B0015', 'R0042');
+insert into BandArtist (bandId, artistId) VALUES ('B0015', 'R0043');
+insert into BandArtist (bandId, artistId) VALUES ('B0015', 'R0044');
+insert into SongBand (songId, bandId) VALUES ('S0119', 'B0015');
+
+
+/*
+ Band: Jennifer Hudson
+ Artist: 1
+ Genre: a capella
+ Label: RCA Records
+ Album: A Pentatonix Christmas Deluxe
+ Songs: 129
+ Concert: None
+ Playlist: Covers
+*/
+insert into Band (bandId, name, size) VALUES ('B0016', 'Jennifer Hudson', 1);
+insert into Artist (artistId, name) VALUES ('R0045', 'Jennifer Hudson');
+insert into BandArtist (bandId, artistId) VALUES ('B0016', 'R0045');
+insert into SongBand (songId, bandId) VALUES ('S0129', 'B0016');
+
+
+/*
+ Band: The String Mob
+Genre: a capella
+ Label: RCA Records
+ Album: A Pentatonix Christmas Deluxe
+ Songs: 132
+ Concert: None
+ Playlist: Covers
+*/
+insert into Band (bandId, name, size) VALUES ('B0017', 'The String Mob', 5);
+insert into Artist (artistId, name) VALUES ('R0046', 'Ben Bram');
+insert into Artist (artistId, name) VALUES ('R0047', 'Andrew Kessler');
+insert into Artist (artistId, name) VALUES ('R0048', 'Quincy Jones');
+insert into Artist (artistId, name) VALUES ('R0049', 'Matt Perkins');
+insert into Artist (artistId, name) VALUES ('R0050', 'Curline Olusola');
+insert into BandArtist (bandId, artistId) VALUES ('B0017', 'R0046');
+insert into BandArtist (bandId, artistId) VALUES ('B0017', 'R0047');
+insert into BandArtist (bandId, artistId) VALUES ('B0017', 'R0048');
+insert into BandArtist (bandId, artistId) VALUES ('B0017', 'R0049');
+insert into BandArtist (bandId, artistId) VALUES ('B0017', 'R0050');
+insert into SongBand (songId, bandId) VALUES ('S0132', 'B0017');
