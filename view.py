@@ -15,7 +15,7 @@ newMenu.add_command(label = 'New Concert')
 
 # menu for viewing data
 viewMenu = tk.Menu(mainWindowObject)
-viewMenu.add_command(label = 'View Concerts', command = lambda: controller.ViewConcertsButton()) 
+viewMenu.add_command(label = 'View Concerts', command = lambda: controller.ViewConcertsButton(mainWindowObject, pages.SelectConcertPage)) 
 viewMenu.add_command(label = 'View Artists')
 viewMenu.add_command(label = 'View Albums')
 

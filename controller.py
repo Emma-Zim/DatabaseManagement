@@ -11,15 +11,15 @@ class Controller():
         self.connection.CloseConnection()
         object.quit()
 
-    def ViewConcertsButton(self):
+    def ViewConcertsButton(self, mainFrame, object):
         # execute an sql query
         retVal = self.connection.SelectConcert()
-        print(retVal)
         for val in retVal:
+            outputString = ""
             for v in val:
-                print(v)
                 if isinstance(v, datetime.date):
                     v = v.strftime('%y-%m-%d')
-                print(type(v))
+                outputString += v + " "
+            mainFrame.getFrame(object).CreateLabel(outputString)
         # output the return on that query on a page
- 
+        mainFrame.showFrame(object)

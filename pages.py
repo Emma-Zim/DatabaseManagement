@@ -24,11 +24,13 @@ class Container(tk.Tk):
 
         self.showFrame(StartPage)
 
+    def getFrame(self, obj):
+        print(obj)
+        return self.frames[obj]
+
     def showFrame(self, cont):
-
-        frame = self.frames[cont]
+        frame = self.getFrame(cont)
         frame.tkraise()
-
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -47,6 +49,10 @@ class SelectConcertPage(tk.Frame):
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Select Concert Page")
         label.pack(pady=10,padx=10)
+
+    def CreateLabel(self, strVal):
+        print(strVal)
+        tk.Label(self, text = strVal).pack()
 
 class UpdateConcertPage(tk.Frame):
     def __init__(self, parent, controller):
