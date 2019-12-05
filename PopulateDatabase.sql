@@ -4,7 +4,7 @@
  Genre: Alternative Rock, Indie Pop
  Label: Atlantic Records
  Album: Habits Of My Heart EP
- Song: Moondust, I'll Be Good, What Should I Do, Come Back For Me, Habits Of My Heart
+ Songs: Moondust, I'll Be Good, What Should I Do, Come Back For Me, Habits Of My Heart
  Concert: Jaymes Young, Phil Good
  Playlist: Favorites
  */
@@ -22,7 +22,7 @@ insert into Songs (songId, duration, name, lyrics) VALUES ('S0005', '00:03:31', 
 insert into BandArtist (bandId, artistId) VALUES ('B0001', 'R0001');
 insert into BandConcert (bandId, concertId) VALUES ('B0001', 'C0001');
 insert into Concert (concertId, location, date) VALUES ('C0001', 'Seattle, Wa', '2019-11-10');
-insert into Playlist (playlistId, name) VALUES ('P0001', 'Favorites');
+insert into Playlist (playlistId, name) VALUES ('P0001', 'Kelby''s Songs');
 insert into SongAlbum (songId, albumId) VALUES ('S0001', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0002', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0003', 'A0001');
@@ -66,7 +66,7 @@ insert into SongPlaylist (songId, playlistId) VALUE ('S0002', 'P0001');
  Genre: Electronic
  Label: Heard Well
  Album: Growing Up
- Song: Be Somebody, Growing Up, I'll Fix It, I Miss You, Sleeping In, Better
+ Songs: Be Somebody, Growing Up, I'll Fix It, I Miss You, Sleeping In, Better
  Concert: Jaymes Young, Phil Good
  */
   insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0003', 'Growing Up', 'Studio', 'G0003', 'L0002');
@@ -99,13 +99,13 @@ insert into SongPlaylist (songId, playlistId) VALUE ('S0002', 'P0001');
  Genre: Indie Rock
  Label: Asteroid B-612
  Album: Atlas: Enneagram
- Song: One, Two, Three, Four, Five, Six, Seven, Eight, Nine
+ Songs: One, Two, Three, Four, Five, Six, Seven, Eight, Nine
  Playlist: Favorites
  */
  insert into Band (bandId, name, size) VALUES ('B0003', 'Sleeping At Last', 3);
  insert into Artist (artistId, name) VALUES ('R0003', 'Ryan O''Neal');
  insert into Artist (artistId, name) VALUES ('R0004', 'Chad O''Neal');
- insert into Artist (artistId, name) VALUES ('R0005', 'Ryan O''Neal');
+ insert into Artist (artistId, name) VALUES ('R0005', 'Dan Perdue');
  insert into BandArtist (bandId, artistId) VALUES ('B0003', 'R0003');
  insert into BandArtist (bandId, artistId) VALUES ('B0003', 'R0004');
  insert into BandArtist (bandId, artistId) VALUES ('B0003', 'R0005');
@@ -443,3 +443,236 @@ Work we''ll ever do');
  insert into SongPlaylist (songId, playlistId) VALUE ('S0014', 'P0001');
  insert into SongPlaylist (songId, playlistId) VALUE ('S0018', 'P0001');
 
+/*
+ Band: Parachute
+ Artists: Will Anderson, Nate McFarland, Alex Hargrave, Johnny Stubblefield, Kit French
+ Genre: Pop Rock
+ Label: Mercury Records
+ Album: The Way It Was
+ Songs: White Dress, You And Me, Something To Believe In, Forever And Always, What I Know, American Secrets, Kiss Me Slowly, Halfway, Philadelphia
+ */
+  insert into Band (bandId, name, size) VALUES ('B0004', 'Parachute', 5);
+  insert into Artist (artistId, name) VALUES ('R0006', 'Will Anderson');
+  insert into Artist (artistId, name) VALUES ('R0007', 'Nate McFarland');
+  insert into Artist (artistId, name) VALUES ('R0008', 'Alex Hargrave');
+  insert into Artist (artistId, name) VALUES ('R0009', 'Johnny Stubblefield');
+  insert into Artist (artistId, name) VALUES ('R0010', 'Kit French');
+  insert into BandArtist (bandId, artistId) VALUES ('B0004', 'R0006');
+  insert into BandArtist (bandId, artistId) VALUES ('B0004', 'R0007');
+  insert into BandArtist (bandId, artistId) VALUES ('B0004', 'R0008');
+  insert into BandArtist (bandId, artistId) VALUES ('B0004', 'R0009');
+  insert into BandArtist (bandId, artistId) VALUES ('B0004', 'R0010');
+  insert into Genre (genreId, name) VALUES ('G0005', 'Pop Rock');
+  insert into Label (labelId, name) VALUES ('L0004', 'Mercury Records');
+  insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0005', 'The Way It Was', 'Studio', 'G0005', 'L0004');
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0022', '00:03:36', 'White Dress', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0023', '00:03:37', 'You And Me', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0024', '00:04:44', 'Something To Believe In', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0025', '00:04:13', 'What I Know', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0026', '00:04:09', 'Forever And Always', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0027', '00:06:19', 'American Secrets', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0028', '00:03:56', 'Kiss Me Slowly', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0029', '00:03:10', 'Halfway', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0030', '00:06:17', 'Philadelphia', null);
+  insert into SongAlbum (songId, albumId) VALUES ('S0022', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0023', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0024', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0025', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0026', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0027', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0028', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0029', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0030', 'A0005');
+  insert into SongBand (songId, bandId) VALUES ('S0022', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0023', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0024', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0025', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0026', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0027', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0028', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0029', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0030', 'B0004');
+
+
+/*
+ Band: AJJ
+ Artists: Sean Bonnette, Ben Gallaty, Preston Bryant, Mark Glick
+ Genre: Indie Rock
+ Label: SideOneDummy
+ Album: Back In The Jazz Coffee
+ */
+ insert into Band (bandId, name, size) VALUES ('B0005', 'AJJ', 4);
+ insert into Artist (artistId, name) VALUES ('R0011', 'Sean Bonnette');
+ insert into Artist (artistId, name) VALUES ('R0012', 'Ben Gallaty');
+ insert into Artist (artistId, name) VALUES ('R0013', 'Preston Bryant');
+ insert into Artist (artistId, name) VALUES ('R0014', 'Mark Glick');
+ insert into BandArtist (bandId, artistId) VALUES ('B0005', 'R0011');
+ insert into BandArtist (bandId, artistId) VALUES ('B0005', 'R0012');
+ insert into BandArtist (bandId, artistId) VALUES ('B0005', 'R0013');
+ insert into BandArtist (bandId, artistId) VALUES ('B0005', 'R0014');
+ insert into Label (labelId, name) VALUES ('L0005', 'SideOneDummy');
+ insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0006', 'Back In The Jazz Coffin', 'Studio', 'G0004', 'L0005');
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0031', '00:00:50', 'American Body Rentals', null);
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0032', '00:02:02', 'Blood, Hatred, Money, and Rage 2', null);
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0033', '00:01:29', 'Border Patrol (Yuma)', null);
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0034', '00:02:26', 'My Crooked Leg', null);
+ insert into SongAlbum (songId, albumId) VALUES ('S0031', 'A0006');
+ insert into SongAlbum (songId, albumId) VALUES ('S0032', 'A0006');
+ insert into SongAlbum (songId, albumId) VALUES ('S0033', 'A0006');
+ insert into SongAlbum (songId, albumId) VALUES ('S0034', 'A0006');
+ insert into SongBand (songId, bandId) VALUES ('S0031', 'B0005');
+ insert into SongBand (songId, bandId) VALUES ('S0032', 'B0005');
+ insert into SongBand (songId, bandId) VALUES ('S0033', 'B0005');
+ insert into SongBand (songId, bandId) VALUES ('S0034', 'B0005');
+
+ /*
+ Band: Mark Glick
+ Artists: Will Anderson, Nate McFarland, Alex Hargrave, Johnny Stubblefield, Kit French
+ Genre: Pop Rock
+ Label: Mercury Records
+ Album: The Way It Was
+ Songs: White Dress, You And Me, Something To Believe In, Forever And Always, What I Know, American Secrets, Kiss Me Slowly, Halfway, Philidelphia
+ */
+ insert into Band (bandId, name, size) VALUES ('B0006', 'Anxiety Machine', 1);
+ insert into BandArtist (bandId, artistId) VALUES ('B0006', 'R0014');
+ insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0007', 'More Everything', 'Studio', 'G0003', 'L0005');
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0035', '00:00:50', 'Broken Idiot Seeks Same', null);
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0036', '00:02:02', 'Housey', null);
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0037', '00:01:29', 'Caffeine Jitters', null);
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0038', '00:02:26', 'Isolation Drill', null);
+ insert into Songs (songId, duration, name, lyrics) VALUES ('S0039', '00:02:26', 'Abandoned Factory Revelation', null);
+ insert into SongAlbum (songId, albumId) VALUES ('S0035', 'A0007');
+ insert into SongAlbum (songId, albumId) VALUES ('S0036', 'A0007');
+ insert into SongAlbum (songId, albumId) VALUES ('S0037', 'A0007');
+ insert into SongAlbum (songId, albumId) VALUES ('S0038', 'A0007');
+ insert into SongAlbum (songId, albumId) VALUES ('S0039', 'A0007');
+ insert into SongBand (songId, bandId) VALUES ('S0035', 'B0006');
+ insert into SongBand (songId, bandId) VALUES ('S0036', 'B0006');
+ insert into SongBand (songId, bandId) VALUES ('S0037', 'B0006');
+ insert into SongBand (songId, bandId) VALUES ('S0038', 'B0006');
+ insert into SongBand (songId, bandId) VALUES ('S0039', 'B0006');
+
+insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0008', 'Wide Awake', 'Studio', 'G0005', 'L0004');
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0040', '00:03:49', 'Without You', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0041', '00:03:46', 'What Side Of Love', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0042', '00:04:31', 'Jennie', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0043', '00:04:00', 'Everything', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0044', '00:03:39', 'Lonely With Me', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0045', '00:03:24', 'Love Me Anyway', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0046', '00:04:06', 'New Orleans', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0047', '00:04:01', 'When You Move', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0048', '00:04:46', 'Getaway', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0049', '00:02:45', 'Crave', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0050', '00:04:33', 'What Breaks My Heart', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0051', '00:04:09', 'Waking Up', null);
+  insert into SongAlbum (songId, albumId) VALUES ('S0040', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0041', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0042', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0043', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0044', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0045', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0046', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0047', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0048', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0049', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0050', 'A0008');
+  insert into SongAlbum (songId, albumId) VALUES ('S0051', 'A0008');
+  insert into SongBand (songId, bandId) VALUES ('S0040', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0041', 'B0004')
+  insert into SongBand (songId, bandId) VALUES ('S0042', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0043', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0044', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0045', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0046', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0047', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0048', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0049', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0050', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0051', 'B0004');
+  insert into Playlist (playlistId, name) VALUES ('P0002', 'Emma''s Songs');
+  insert into SongPlaylist (songId, playlistId) VALUES ('S0044', 'P0002');
+
+
+insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0005', 'The Way It Was', 'Studio', 'G0005', 'L0004');
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0022', '00:03:36', 'White Dress', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0023', '00:03:37', 'You And Me', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0024', '00:04:44', 'Something To Believe In', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0025', '00:04:13', 'What I Know', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0026', '00:04:09', 'Forever And Always', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0027', '00:06:19', 'American Secrets', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0028', '00:03:56', 'Kiss Me Slowly', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0029', '00:03:10', 'Halfway', null);
+  insert into Songs (songId, duration, name, lyrics) VALUES ('S0030', '00:06:17', 'Philadelphia', null);
+  insert into SongAlbum (songId, albumId) VALUES ('S0022', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0023', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0024', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0025', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0026', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0027', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0028', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0029', 'A0005');
+  insert into SongAlbum (songId, albumId) VALUES ('S0030', 'A0005');
+  insert into SongBand (songId, bandId) VALUES ('S0022', 'B0004');
+  insert into SongBand (songId, bandId) VALUES ('S0023', 'B0004');
+/*
+ Band: Parachute
+ Genre:
+ Label:
+ Album: Wide Awake
+ Songs: Lonely With Me
+ Playlist: Emma's Songs
+ */
+
+/*
+ Band: Parachute
+ Genre:
+ Label:
+ Album: Parachute
+ Songs: Lonely With Me
+ Playlist: Emma's Songs
+ */
+
+/*
+ Band: Mumford & Sons
+ Genre:
+ Label:
+ Album: Babel
+ Songs: Hopeless Wanderer, Below My Feet, Not With Haste
+ Playlist: Emma's Songs
+ */
+
+/*
+ Band: Coldplay
+ Genre:
+ Label:
+ Album: A Head Full Of Dreams
+ Songs: Everglow, Hymn For The Weekend
+ Playlist: Emma's Songs
+ */
+
+/*
+ Band: Panic! At The Disco
+ Genre:
+ Label:
+ Album: Nearly Witches
+ Songs: Sarah Smiles
+ Playlist: Emma's Songs
+ */
+
+ /*
+ Band: Panic! At The Disco
+ Genre:
+ Label:
+ Album: Too Weird To Live, Too Rare To Die!
+ Songs: This Is Gospel
+ Playlist: Emma's Songs
+ */
+
+ /*
+ Band: The Front Bottoms
+ Genre:
+ Label:
+ Album: Rose
+ Songs: This Is Gospel
+ Playlist: Kelby's Songs
+ */
