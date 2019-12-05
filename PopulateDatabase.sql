@@ -911,8 +911,7 @@ insert into SongBand (songId, bandId) VALUES ('S0096', 'B0011');
  Genre:
  Label:
  Album: Rose
- Songs: This Is Gospel
- Playlist: Kelby's Songs
+ Songs:
 */
 insert into Band (bandId, name, size) VALUES ('B0012', 'The Front Bottoms', 3);
 insert into Artist (artistId, name) VALUES ('R0032', 'Brian Stella');
@@ -951,3 +950,25 @@ insert into SongBand (songId, bandId) VALUES ('S0110', 'B0008');
  Songs:
  Playlist: Favorites
 */
+insert into Band (bandId, name, size) VALUES ('B0013', 'Matt Maeson', 1);
+insert into Artist (artistId, name) VALUES ('R0035', 'Matt Maeson');
+insert into BandArtist (bandId, artistId) VALUES ('B0013', 'R0035');
+insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0015', 'Rose', 'Live', 'G0008', 'L0001');
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0111', '00:03:58', 'Grave Digger', null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0112', '00:03:35', 'Cringe' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0113', '00:03:00', 'Me And My Friends Are Lonely' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0114', '00:04:27', 'Straight Razor' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0115', '00:03:10', 'Tribulation' , null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0116', '00:02:54', 'Twenty Twelve' , null);
+insert into SongAlbum (songId, albumId) VALUES ('S0111', 'A0015');
+insert into SongAlbum (songId, albumId) VALUES ('S0112', 'A0015');
+insert into SongAlbum (songId, albumId) VALUES ('S0113', 'A0015');
+insert into SongAlbum (songId, albumId) VALUES ('S0114', 'A0015');
+insert into SongAlbum (songId, albumId) VALUES ('S0115', 'A0015');
+insert into SongAlbum (songId, albumId) VALUES ('S0116', 'A0015');
+insert into SongBand (songId, bandId) VALUES ('S0111', 'B0013');
+insert into SongBand (songId, bandId) VALUES ('S0112', 'B0013');
+insert into SongBand (songId, bandId) VALUES ('S0113', 'B0013');
+insert into SongBand (songId, bandId) VALUES ('S0114', 'B0013');
+insert into SongBand (songId, bandId) VALUES ('S0115', 'B0013');
+insert into SongBand (songId, bandId) VALUES ('S0116', 'B0013');
