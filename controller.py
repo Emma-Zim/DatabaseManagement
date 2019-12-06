@@ -14,6 +14,7 @@ class Controller():
     def ViewConcertsButton(self, mainFrame, object):
         # execute an sql query
         retVal = self.connection.SelectConcert()
+        #mainFrame.getFrame(object).CreateLabel("Band Location Date")
         for val in retVal:
             outputString = ""
             for v in val:
