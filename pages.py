@@ -15,7 +15,7 @@ class Container(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, CreateConcertPage, SelectConcertPage, UpdateConcertPage, DelecteConcertPage):
+        for F in (StartPage, CreateConcertPage, SelectConcertPage, UpdateConcertPage, DeleteConcertPage):
 
             frame = F(container, self)
             self.frames[F] = frame
@@ -43,6 +43,8 @@ class CreateConcertPage(tk.Frame):
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Create Concert Page")
         label.pack(pady=10,padx=10)
+        self.listBox = tk.Listbox(self, width = 40, selectmode='SINGLE')
+
 
 class SelectConcertPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -51,7 +53,6 @@ class SelectConcertPage(tk.Frame):
         label.pack(pady=10,padx=10)
 
     def CreateLabel(self, strVal):
-        print(strVal)
         tk.Label(self, text = strVal).pack()
 
 class UpdateConcertPage(tk.Frame):
@@ -59,9 +60,34 @@ class UpdateConcertPage(tk.Frame):
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Update Concert Page")
         label.pack(pady=10,padx=10)
+        self.listBox = tk.Listbox(self, width = 40, selectmode='SINGLE')
 
-class DelecteConcertPage(tk.Frame):
+    def ShowSelection(self, values):
+        count = 0
+        for v in values:
+            outputString = v[0] + " at " + v[1] + " on " + v[2].strftime('%y-%m-%d')
+            self.listBox.insert(count, outputString)
+            count += 1
+        self.listBox.pack()
+
+        tk.Button(self, text = "Select").pack()
+
+class DeleteConcertPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Delete Concert Page")
         label.pack(pady=10,padx=10)
+        self.listBox = self.CreateListbox(self, width = 40, selectmode='MULTIPLE ')
+
+    def CreateListbox(self):
+        return tk.Listbox(self, width = 40, selectmode='SINGLE')
+
+    def ShowSelection(self, values):
+        count = 0
+        for v in values:
+            outputString = v[0] + " at " + v[1] + " on " + v[2].strftime('%y-%m-%d')
+            self.listBox.insert(count, outputString)
+            count += 1
+        self.listBox.pack()
+
+        tk.Button(self, text = "Delete").pack()

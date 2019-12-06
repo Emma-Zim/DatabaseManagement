@@ -12,6 +12,7 @@ class DatabaseConnection():
 
         except mysql.connector.Error as failure:
             print("Error connecting to the database", failure)
+            exit()
 
     def CloseConnection(self):
         self.connection.close()
@@ -23,7 +24,6 @@ class DatabaseConnection():
     def CloseCursor(self):
         self.cursor.close()
 
-
-    def SelectConcert(self):
-        self.cursor.execute("""SELECT B.name, C.location, C.date FROM Concert C JOIN BandConcert BC ON BC.concertId = C.concertId JOIN Band B ON B.bandId = BC.bandId;""")
+    def ExecuteQuery(self, query):
+        self.cursor.execute(query)
         return self.cursor.fetchall()

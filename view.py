@@ -15,7 +15,7 @@ newMenu.add_command(label = 'New Concert')
 
 # menu for viewing data
 viewMenu = tk.Menu(mainWindowObject)
-viewMenu.add_command(label = 'View Concerts', command = lambda: controller.ViewConcertsButton(mainWindowObject, pages.SelectConcertPage)) 
+viewMenu.add_command(label = 'View Concerts', command = lambda: controller.ViewConcertsButton(mainWindowObject, pages.SelectConcertPage))
 viewMenu.add_command(label = 'View Artists')
 viewMenu.add_command(label = 'View Albums')
 
@@ -26,11 +26,11 @@ searchMenu.add_command(label = 'Search Artists')
 
 # Menu for updating data
 updateMenu = tk.Menu(mainWindowObject)
-updateMenu.add_command(label = 'Update Concerts') #, command = lambda: mainWindowObject.show_frame(pages.UpdateConcertPage))
+updateMenu.add_command(label = 'Update Concerts', command = lambda: controller.UpdateConcertsPage(mainWindowObject, pages.UpdateConcertPage))
 
 # menu for deleteing data
 deleteMenu = tk.Menu(mainWindowObject)
-deleteMenu.add_command(label = 'Delete Concert') #, command = lambda: mainWindowObject.show_frame(pages.DelecteConcertPage))
+deleteMenu.add_command(label = 'Delete Concert', command = lambda: controller.DeleteConcertsPage(mainWindowObject, pages.DeleteConcertPage)) #, command = lambda: mainWindowObject.show_frame(pages.DelecteConcertPage))
 
 # overall menu for the menus
 menu = tk.Menu(mainWindowObject)
