@@ -161,3 +161,15 @@ create table BandArtist
 		foreign key (bandId) references Band (bandId)
 			on update restrict on delete restrict
 );
+
+create table BandAlbum
+(
+	bandId char(5) not null,
+	albumId char(5) not null,
+	constraint BandAlbum_pk
+		primary key (bandId, albumId),
+	constraint BandAlbum_Album_albumId_fk
+		foreign key (albumId) references Album (albumId),
+	constraint BandAlbum_Band_bandId_bandId_fk
+		foreign key (bandId) references Band (bandId)
+);
