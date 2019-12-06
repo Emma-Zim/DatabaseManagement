@@ -43,8 +43,6 @@ class CreateConcertPage(tk.Frame):
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Create Concert Page")
         label.pack(pady=10,padx=10)
-        self.listBox = tk.Listbox(self, width = 40, selectmode='SINGLE')
-
 
 class SelectConcertPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -64,8 +62,8 @@ class UpdateConcertPage(tk.Frame):
 
     def ShowSelection(self, values):
         count = 0
-        for v in values:
-            outputString = v[0] + " at " + v[1] + " on " + v[2].strftime('%y-%m-%d')
+        for val in values:
+            outputString = val[0] + "|" + val[1] + "|" + val[2].strftime('%y-%m-%d')
             self.listBox.insert(count, outputString)
             count += 1
         self.listBox.pack()
@@ -77,17 +75,14 @@ class DeleteConcertPage(tk.Frame):
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Delete Concert Page")
         label.pack(pady=10,padx=10)
-        self.listBox = self.CreateListbox(self, width = 40, selectmode='MULTIPLE ')
+        self.listBox = tk.Listbox(self, width = 40, selectmode='SINGLE')
 
-    def CreateListbox(self):
-        return tk.Listbox(self, width = 40, selectmode='SINGLE')
-
-    def ShowSelection(self, values):
+    def ShowSelection(self, c, values):
         count = 0
-        for v in values:
-            outputString = v[0] + " at " + v[1] + " on " + v[2].strftime('%y-%m-%d')
+        for val in values:
+            outputString = val[0] + "|" + val[1] + "|" + val[2].strftime('%y-%m-%d')
             self.listBox.insert(count, outputString)
             count += 1
         self.listBox.pack()
 
-        tk.Button(self, text = "Delete").pack()
+        tk.Button(self, text = "Delete", command = lambda: c.Remove(self.listBox.get(self.listBox.curselection()))).pack()

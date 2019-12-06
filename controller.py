@@ -18,7 +18,7 @@ class Controller():
                                                     JOIN Band B ON B.bandId = BC.bandId;""")
         #mainFrame.getFrame(object).CreateLabel("Band Location Date")
         for val in retVal:
-            outputString = val[0] + " at " + val[1] + " on " + val[2].strftime('%y-%m-%d')
+            outputString = val[0] + "|" + val[1] + "|" + val[2].strftime('%y-%m-%d')
             mainFrame.getFrame(object).CreateLabel(outputString)
         # output the return on that query on a page
         mainFrame.showFrame(object)
@@ -34,5 +34,12 @@ class Controller():
         retVal = self.connection.ExecuteQuery("""SELECT B.name, C.location, C.date FROM Concert C
                                                     JOIN BandConcert BC ON BC.concertId = C.concertId
                                                     JOIN Band B ON B.bandId = BC.bandId;""")
-        mainFrame.getFrame(object).ShowSelection(retVal)
+        mainFrame.getFrame(object).ShowSelection(self, retVal)
         mainFrame.showFrame(object)
+
+    def Remove(self, item):
+        vals = item.split("|")
+        print(vals)
+        retVal = self.connection.RemoveFromConcert(vals[0], vals[1], vals[2].strptime('%y-%m-%d'))
+        print(retVal)
+        #retVal = control.connection.ExecuteQuery()

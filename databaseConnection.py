@@ -27,3 +27,10 @@ class DatabaseConnection():
     def ExecuteQuery(self, query):
         self.cursor.execute(query)
         return self.cursor.fetchall()
+
+    def RemoveFromConcert(self, name, location, date):
+        self.cursor.execute("""SELECT C.concertId FROM Concert C
+                                JOIN BandConcert BC ON BC.concertId=C.concertId
+                                JOIN Band B ON B.bandId=BC.bandId
+                                WHERE B.name = %s AND C.location = %s AND C.date = %s""", (name, location, date))
+        return self.cursor.fetchall()
