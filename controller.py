@@ -11,28 +11,146 @@ class Controller():
         self.connection.CloseConnection()
         object.quit()
 
+    def CreateConcertButton(self, mainFrame, object):
+        for widget in mainFrame.getFrame(object).winfo_children():
+            widget.destroy()
+        mainFrame.getFrame(object).CreateBands()
+        mainFrame.getFrame(object).CreateSongs()
+        mainFrame.getFrame(object).CreateEntry()
+
+        b = self.GetBands()
+        for band in b:
+            mainFrame.getFrame(object).AddBand(band)
+
+        s = self.GetSongs()
+        for song in s:
+            mainFrame.getFrame(object).AddSong(song)
+
+        mainFrame.getFrame(object).GeneratePage(self)
+        mainFrame.showFrame(object)
+
     def ViewConcertsButton(self, mainFrame, object):
         # execute an sql query
-        retVal = self.connection.ExecuteQuery("""SELECT B.name, C.location, C.date FROM Concert C
-                                                    JOIN BandConcert BC ON BC.concertId = C.concertId
-                                                    JOIN Band B ON B.bandId = BC.bandId;""")
-        #mainFrame.getFrame(object).CreateLabel("Band Location Date")
+        retVal = self.connection.SelectConcert()
+        colCount = 0
         for val in retVal:
-            outputString = val[0] + " at " + val[1] + " on " + val[2].strftime('%y-%m-%d')
-            mainFrame.getFrame(object).CreateLabel(outputString)
-        # output the return on that query on a page
+            rowCount = 0
+            r = self.connection.SelectConcertArtist(val[0])
+            outputString = ""
+            for artist in r:
+                outputString += artist[0] + " & "
+            mainFrame.getFrame(object).CreateLabel(outputString[:-3], rowCount, colCount)
+            rowCount += 1
+            r = self.connection.SelectConcertValues(val[0])
+            for v in r:
+                for i in v:
+                    mainFrame.getFrame(object).CreateLabel(i, rowCount, colCount)
+                    rowCount += 1
+            r = self.connection.SelectConcertSongs(val[0])
+            for data in r:
+                mainFrame.getFrame(object).CreateLabel(data[0], rowCount, colCount)
+                rowCount += 1
+            colCount += 1
         mainFrame.showFrame(object)
 
     def UpdateConcertsPage(self, mainFrame, object):
-        retVal = self.connection.ExecuteQuery("""SELECT B.name, C.location, C.date FROM Concert C
-                                                    JOIN BandConcert BC ON BC.concertId = C.concertId
-                                                    JOIN Band B ON B.bandId = BC.bandId;""")
-        mainFrame.getFrame(object).ShowSelection(retVal)
+        for widget in mainFrame.getFrame(object).winfo_children():
+            widget.destroy()
+        mainFrame.getFrame(object).CreateListbox()
+        vals = self.GetConcerts()
+        for v in vals:
+            mainFrame.getFrame(object).AddSelection(v)
+        mainFrame.getFrame(object).ShowSelection(self)
         mainFrame.showFrame(object)
 
     def DeleteConcertsPage(self, mainFrame, object):
-        retVal = self.connection.ExecuteQuery("""SELECT B.name, C.location, C.date FROM Concert C
-                                                    JOIN BandConcert BC ON BC.concertId = C.concertId
-                                                    JOIN Band B ON B.bandId = BC.bandId;""")
-        mainFrame.getFrame(object).ShowSelection(retVal)
+        for widget in mainFrame.getFrame(object).winfo_children():
+            widget.destroy()
+        mainFrame.getFrame(object).CreateListbox()
+        vals = self.GetConcerts()
+        for v in vals:
+            mainFrame.getFrame(object).AddSelection(v)
+        mainFrame.getFrame(object).ShowSelection(self)
         mainFrame.showFrame(object)
+
+    def GetBands(self):
+        items = []
+        retVal = self.connection.SelectBands()
+        for val in retVal:
+            items.append(val[1])
+
+        return items
+
+    def GetSongs(self):
+        items = []
+        retVal = self.connection.SelectSongs()
+        for val in retVal:
+            items.append(val[2])
+
+        return items
+
+    def GetConcerts(self):
+        items = []
+        retVal = self.connection.SelectConcert()
+        for val in retVal:
+            outputString = ""
+            v = self.connection.SelectConcertArtist(val[0])
+            for artist in v:
+                outputString += artist[0] + " & "
+            outputString = outputString[:-2]
+            v = self.connection.SelectConcertValues(val[0])
+            for item in v:
+                for i in item:
+                    if isinstance(i, datetime.date):
+                        i = i.strftime('%y-%m-%d')
+                    outputString += i + " "
+            items.append(outputString)
+        return items
+
+    def RemoveConcert(self, obj, item):
+        if item:
+            id = "C"
+            for x in range(0, 4 - len(str(item[0]))):
+                id = id + "0"
+            id = id + str(item[0] + 1)
+            print(id)
+            #retVal = self.connection.RemoveFromConcert(id)
+            #if retVal:
+            obj.ShowMessage("Delete Successful")
+            for widget in obj.winfo_children():
+                widget.destroy()
+            obj.CreateListbox()
+            vals = self.GetConcerts()
+            for v in vals:
+                obj.AddSelection(v)
+            obj.ShowSelection(self)
+            #else:
+                #mainFrame.getFrame(object).ShowMessage("Delete Failed")
+            #print(retVal)
+
+    def CreateConcert(self, obj):
+        print(obj.location.get())
+        print(obj.bands.curselection())
+        print(obj.songs.curselection())
+        print(obj.dateEntry.get())
+
+        if obj.bands.curselection() and obj.songs.curselection():
+            # Add the Concert to the database
+            retVal = self.connection.AddConcert(obj.bands.curselection(), obj.songs.curselection(), obj.location.get(), obj.dateEntry.get())
+
+            obj.ShowMessage("Create Successful")
+            for widget in obj.winfo_children():
+                widget.destroy()
+            obj.CreateBands()
+            obj.CreateSongs()
+            obj.CreateEntry()
+
+            b = self.GetBands()
+            for band in b:
+                obj.AddBand(band)
+
+            s = self.GetSongs()
+            for song in s:
+                obj.AddSong(song)
+
+            obj.GeneratePage(self)
