@@ -11,7 +11,7 @@ mainWindowObject.title("Database Music Library Project")
 
 # Menu for Creating a new data object
 newMenu = tk.Menu(mainWindowObject)
-newMenu.add_command(label = 'New Concert')
+newMenu.add_command(label = 'New Concert', command = lambda: controller.CreateConcertButton(mainWindowObject, pages.CreateConcertPage))
 
 # menu for viewing data
 viewMenu = tk.Menu(mainWindowObject)
