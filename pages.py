@@ -1,3 +1,4 @@
+
 import tkinter as tk
 import tkinter.messagebox
 import databaseConnection as dbc
@@ -15,7 +16,7 @@ class Container(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, CreateConcertPage, SelectConcertPage, UpdateConcertPage, DeleteConcertPage):
+        for F in (StartPage, CreateConcertPage, SelectConcertPage, UpdateConcertPage, DeleteConcertPage, ShowAlbumsFromBand, ShowSongsFromAlbum, ShowBandArtists):
 
             frame = F(container, self)
             self.frames[F] = frame
@@ -152,3 +153,57 @@ class DeleteConcertPage(tk.Frame):
 
     def ShowMessage(self, text):
         tk.messagebox.showinfo("Delete Query", text)
+
+class ShowAlbumsFromBand(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.listBox = self.CreateListbox()
+
+    def CreateListbox(self):
+        self.listBox = tk.Listbox(self, width = 50, selectmode='SINGLE')
+
+    def AddSelection(self, outputString):
+        self.listBox.insert("end", outputString)
+
+    def ShowSelection(self, c):
+        self.listBox.pack()
+        tk.Button(self, text = "Show Albums", command = lambda: c.showAlbumsBand(self, self.listBox.curselection())).pack()
+
+    def ShowMessage(self, text):
+        tk.messagebox.showinfo("Band Albums:", text)
+
+class ShowSongsFromAlbum(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.listBox = self.CreateListbox()
+
+    def CreateListbox(self):
+        self.listBox = tk.Listbox(self, width = 50, selectmode='SINGLE')
+
+    def AddSelection(self, outputString):
+        self.listBox.insert("end", outputString)
+
+    def ShowSelection(self, c):
+        self.listBox.pack()
+        tk.Button(self, text = "Show Songs", command = lambda: c.showSongsAlbum(self, self.listBox.curselection())).pack()
+
+    def ShowMessage(self, text):
+        tk.messagebox.showinfo("Album Songs:", text)
+
+class ShowBandArtists(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.listBox = self.CreateListbox()
+
+    def CreateListbox(self):
+        self.listBox = tk.Listbox(self, width = 50, selectmode='SINGLE')
+
+    def AddSelection(self, outputString):
+        self.listBox.insert("end", outputString)
+
+    def ShowSelection(self, c):
+        self.listBox.pack()
+        tk.Button(self, text = "Show Members", command = lambda: c.SelectMembersFromBand(self, self.listBox.curselection())).pack()
+
+    def ShowMessage(self, text):
+        tk.messagebox.showinfo("Band Members:", text)
