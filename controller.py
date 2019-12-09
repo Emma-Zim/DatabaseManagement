@@ -110,47 +110,43 @@ class Controller():
     def RemoveConcert(self, obj, item):
         if item:
             id = "C"
-            for x in range(0, 4 - len(str(item[0]))):
+            for x in range(0, 4 - len(str(item[0] + 1))):
                 id = id + "0"
             id = id + str(item[0] + 1)
             print(id)
-            #retVal = self.connection.RemoveFromConcert(id)
-            #if retVal:
-            obj.ShowMessage("Delete Successful")
-            for widget in obj.winfo_children():
-                widget.destroy()
-            obj.CreateListbox()
-            vals = self.GetConcerts()
-            for v in vals:
-                obj.AddSelection(v)
-            obj.ShowSelection(self)
-            #else:
-                #mainFrame.getFrame(object).ShowMessage("Delete Failed")
-            #print(retVal)
+            retVal = self.connection.RemoveFromConcert(id)
+            if retVal:
+                obj.ShowMessage("Delete Successful")
+                for widget in obj.winfo_children():
+                    widget.destroy()
+                obj.CreateListbox()
+                vals = self.GetConcerts()
+                for v in vals:
+                    obj.AddSelection(v)
+                obj.ShowSelection(self)
+            else:
+                mainFrame.getFrame(object).ShowMessage("Delete Failed")
 
     def CreateConcert(self, obj):
-        print(obj.location.get())
-        print(obj.bands.curselection())
-        print(obj.songs.curselection())
-        print(obj.dateEntry.get())
-
         if obj.bands.curselection() and obj.songs.curselection():
             # Add the Concert to the database
             retVal = self.connection.AddConcert(obj.bands.curselection(), obj.songs.curselection(), obj.location.get(), obj.dateEntry.get())
+            if retVal:
+                obj.ShowMessage("Create Successful")
+                for widget in obj.winfo_children():
+                    widget.destroy()
+                obj.CreateBands()
+                obj.CreateSongs()
+                obj.CreateEntry()
 
-            obj.ShowMessage("Create Successful")
-            for widget in obj.winfo_children():
-                widget.destroy()
-            obj.CreateBands()
-            obj.CreateSongs()
-            obj.CreateEntry()
+                b = self.GetBands()
+                for band in b:
+                    obj.AddBand(band)
 
-            b = self.GetBands()
-            for band in b:
-                obj.AddBand(band)
+                s = self.GetSongs()
+                for song in s:
+                    obj.AddSong(song)
 
-            s = self.GetSongs()
-            for song in s:
-                obj.AddSong(song)
-
-            obj.GeneratePage(self)
+                obj.GeneratePage(self)
+            else:
+                obj.ShowMessage("Create Failed")
