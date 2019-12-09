@@ -1,6 +1,7 @@
 import tkinter as tk
 import databaseConnection as dc
 import datetime
+import re
 
 class Controller():
     def __init__(self):
@@ -30,7 +31,8 @@ class Controller():
         mainFrame.showFrame(object)
 
     def ViewConcertsButton(self, mainFrame, object):
-        # execute an sql query
+        for widget in mainFrame.getFrame(object).winfo_children():
+            widget.destroy()
         retVal = self.connection.SelectConcert()
         colCount = 0
         for val in retVal:
@@ -154,26 +156,59 @@ class Controller():
                 songId = songId + str(s + 1)
                 songIds.append(songId)
 
-            retVal = self.connection.AddConcert(bandIds, songIds, loc, obj.dateEntry.get())
-            if retVal:
-                obj.ShowMessage("Create Successful")
-                for widget in obj.winfo_children():
-                    widget.destroy()
-                obj.CreateBands()
-                obj.CreateSongs()
-                obj.CreateEntry()
+            year = obj.dateEntry.get()[0:4]
+            month = obj.dateEntry.get()[5:7]
+            day = obj.dateEntry.get()[8:]
 
-                b = self.GetBands()
-                for band in b:
-                    obj.AddBand(band)
+            flag = True
+            if len(obj.dateEntry.get()) == 0 or not re.match("[0-9]{4}-[0-9]{2}-[0-9]{2}", obj.dateEntry.get()):
+                flag = False
 
-                s = self.GetSongs()
-                for song in s:
-                    obj.AddSong(song)
+            if flag:
+                year = obj.dateEntry.get()[0:4]
+                month = obj.dateEntry.get()[5:7]
+                day = obj.dateEntry.get()[8:]
 
-                obj.GeneratePage(self)
-            else:
-                obj.ShowMessage("Create Failed")
+                if int(month) <= 0 or int(month) >= 13:
+                    flag = False
+
+                flag = True
+                if int(year) < 1600 or int(year) > 2021:
+                    flag = False
+
+                if flag:
+                    if int(month) == 1 or int(month) == 3 or int(month) == 5 or int(month) == 7 or int(month) == 8 or int(month) == 10 or int(month) == 12:
+                        if int(day) <= 0 or int(day) > 31:
+                            flag = False
+                    if int(month) == 2:
+                        if int(day) <= 0 or int(day) > 28:
+                            flag = False
+
+                    if int(month) == 4 or int(month) == 6 or int(month) == 9 or int(month) == 11:
+                        if int(day) <= 0 or int(day) > 30:
+                            flag = False
+
+            if flag:
+                retVal = self.connection.AddConcert(bandIds, songIds, loc, obj.dateEntry.get())
+                if retVal:
+                    obj.ShowMessage("Create Successful")
+                    for widget in obj.winfo_children():
+                        widget.destroy()
+                    obj.CreateBands()
+                    obj.CreateSongs()
+                    obj.CreateEntry()
+
+                    b = self.GetBands()
+                    for band in b:
+                        obj.AddBand(band)
+
+                    s = self.GetSongs()
+                    for song in s:
+                        obj.AddSong(song)
+
+                    obj.GeneratePage(self)
+                else:
+                    obj.ShowMessage("Create Failed")
 
     def UpdateConcert(self, obj):
         if obj.listBox.curselection():
@@ -185,17 +220,45 @@ class Controller():
                 id = id + "0"
             id = id + str(obj.listBox.curselection()[0] + 1)
 
-            retVal = self.connection.UpdateConcert(id, loc, obj.dateEntry.get())
-            if retVal:
-                obj.ShowMessage("Create Successful")
-                for widget in obj.winfo_children():
-                    widget.destroy()
-                obj.CreateListbox()
-                obj.CreateEntry()
-                vals = self.GetConcerts()
-                for v in vals:
-                    obj.AddSelection(v)
-                obj.ShowSelection(self)
-                obj.GeneratePage(self)
-            else:
-                obj.ShowMessage("Update Failed")
+            flag = True
+            if len(obj.dateEntry.get()) == 0 or not re.match("[0-9]{4}-[0-9]{2}-[0-9]{2}", obj.dateEntry.get()):
+                flag = False
+
+            if flag:
+                year = obj.dateEntry.get()[0:4]
+                month = obj.dateEntry.get()[5:7]
+                day = obj.dateEntry.get()[8:]
+
+                if int(month) <= 0 or int(month) >= 13:
+                    flag = False
+
+                if int(year) < 1600 or int(year) > 2021:
+                    flag = False
+
+                if flag:
+                    if int(month) == 1 or int(month) == 3 or int(month) == 5 or int(month) == 7 or int(month) == 8 or int(month) == 10 or int(month) == 12:
+                        if int(day) <= 0 or int(day) > 31:
+                            flag = False
+                    if int(month) == 2:
+                        if int(day) <= 0 or int(day) > 28:
+                            flag = False
+
+                    if int(month) == 4 or int(month) == 6 or int(month) == 9 or int(month) == 11:
+                        if int(day) <= 0 or int(day) > 30:
+                            flag = False
+
+            if flag:
+                retVal = self.connection.UpdateConcert(id, loc, obj.dateEntry.get())
+                if retVal:
+                    obj.ShowMessage("Create Successful")
+                    for widget in obj.winfo_children():
+                        widget.destroy()
+                    obj.CreateListbox()
+                    obj.CreateEntry()
+                    vals = self.GetConcerts()
+                    for v in vals:
+                        obj.AddSelection(v)
+                    obj.ShowSelection(self)
+                    obj.GeneratePage(self)
+                else:
+                    obj.ShowMessage("Update Failed")

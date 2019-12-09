@@ -47,11 +47,12 @@ class DatabaseConnection():
         return self.cursor.fetchall()
 
     def RemoveFromConcert(self, concert):
-        self.cursor.execute("""DELETE FROM SongConcert WHERE concertId=\'{}\';""".format(concert))
-        self.cursor.execute("""DELETE FROM BandConcert WHERE concertId=\'{}\';""".format(concert))
-        self.cursor.execute("""DELETE FROM Concert WHERE concertId=\'{}\';""".format(concert))
-        self.connection.commit()
-        return True
+        print(concert)
+        if not self.cursor.execute("""DELETE FROM SongConcert WHERE concertId=\'{}\';""".format(concert)) and not self.cursor.execute("""DELETE FROM BandConcert WHERE concertId=\'{}\';""".format(concert)) and not self.cursor.execute("""DELETE FROM Concert WHERE concertId=\'{}\';""".format(concert)):
+            self.connection.commit()
+            return True
+        else:
+            return False
 
     def AddConcert(self, bands, songs, location, date):
         # get the concertId
@@ -82,7 +83,6 @@ class DatabaseConnection():
         return self.cursor.fetchall()
 
     def UpdateConcert(self, concert, location, date):
-        print(concert)
         self.cursor.execute("""UPDATE Concert SET location = \'{}\', date = \'{}\' WHERE concertId = \'{}\';""".format(location, date, concert))
         self.connection.commit()
         return True
