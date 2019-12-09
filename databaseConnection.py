@@ -105,10 +105,32 @@ class DatabaseConnection():
                                 WHERE B.name = \'{band}\';""")
         return self.cursor.fetchall()
     
-    def GetBandFromSongName(self, song_name):
-        self.cursor.execute(f"""SELECT B.name 
-                                FROM Band B
-                                JOIN SongBand SB ON B.bandId = SB.bandId
-                                JOIN Songs S ON SB.songId = S.songId
-                                WHERE S.name = \'{song_name}\';""")
+    def SearchforAlbums(self, band):
+        self.cursor.execute(f"""SELECT A.name 
+                                FROM Album A
+                                JOIN BandAlbum BA ON A.albumId = BA.albumId
+                                JOIN Band B ON BA.bandId = B.bandId
+                                WHERE B.name = \'{band}\';""")
         return self.cursor.fetchall()
+    
+    def SelectPlaylist(self):
+        self.cursor.execute("""SELECT playlistId FROM Playlist;""")
+        return self.cursor.fetchall()
+    
+    def SelectPlaylistName(self, playlistID):
+        self.cursor.execute(f"""SELECT name 
+                                FROM Playlist
+                                WHERE playlistId = \'{playlistID}\';""")
+        return self.cursor.fetchall()
+
+    def ViewPlaylistDuration (self, playlist):
+        self.cursor.execute(f"""SELECT TIME_TO_SEC(S.duration)
+                                FROM Songs S
+                                JOIN SongPlaylist SP on S.songId = SP.songId
+                                JOIN Playlist P on SP.playlistId = P.playlistId
+                                WHERE P.playlistId = \'{playlist}\';""")
+        return self.cursor.fetchall()
+    
+    
+
+

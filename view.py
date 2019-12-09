@@ -18,11 +18,11 @@ viewMenu = tk.Menu(mainWindowObject)
 viewMenu.add_command(label = 'View Concerts', command = lambda: controller.ViewConcertsButton(mainWindowObject, pages.SelectConcertPage))
 viewMenu.add_command(label = 'View Artists', command = lambda: controller.ViewBandsButton(mainWindowObject, pages.SelectBandsPage))
 viewMenu.add_command(label = 'View Albums', command = lambda: controller.ViewAlbumsButton(mainWindowObject, pages.SelectAlbumsPage))
-
+viewMenu.add_command(label = "View Playlists", command = lambda: controller.ViewPlaylistsButton(mainWindowObject, pages.SelectPlaylistsPage))
 # menu for searching
 searchMenu = tk.Menu(mainWindowObject)
 searchMenu.add_command(label = 'Search Songs', command = lambda: controller.SearchforSongsButton(mainWindowObject, pages.SearchSongsPage))
-searchMenu.add_command(label = 'Search Artists')
+searchMenu.add_command(label = 'Search Artists', command = lambda: controller.SearchforAlbumsButton(mainWindowObject, pages.SearchAlbumsPage))
 
 # Menu for updating data
 updateMenu = tk.Menu(mainWindowObject)
