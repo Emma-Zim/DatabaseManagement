@@ -7,7 +7,7 @@ class DatabaseConnection():
 
     def CreateConnection(self):
         try:
-            connection = mysql.connector.connect(host='leia.cs.spu.edu', database='zimmermane_db', user='zimmermane', password='zimmermane11$4410X')
+            connection = mysql.connector.connect(host='leia.cs.spu.edu', database='dengl_db', user='dengl', password='dengl12$4410X')
             return connection
 
         except mysql.connector.Error as failure:
@@ -53,13 +53,62 @@ class DatabaseConnection():
                                         DELETE FROM Concert WHERE concertId=\'{concert}\';""")
         return self.cursor.fetchall()
 
-    def AddConcert(self, bands, songs, location, date):
+    #def AddConcert(self, bands, songs, location, date):
         
 
     def SelectBands(self):
-        self.cursor.execute("""SELECT * FROM Band;""")
+        self.cursor.execute("""SELECT name FROM Band;""")
+        return self.cursor.fetchall()
+    
+    def SelectBandsArtist(self, artists):
+        self.cursor.execute(f"""SELECT A.name 
+                                FROM Artist A
+                                JOIN BandArtist BA ON A.artistId = BA.artistId
+                                JOIN Band B ON BA.bandId = B.bandId
+                                WHERE B.name = \'{artists}\';""")
+        return self.cursor.fetchall()
+    
+    def SelectAlbums(self):
+        self.cursor.execute("""SELECT name FROM Album;""")
+        return self.cursor.fetchall()
+    
+    def SelectAlbumsSong(self, album):
+        self.cursor.execute(f"""SELECT S.name FROM Songs S
+                                JOIN SongAlbum SA ON S.songId = SA.songId
+                                JOIN Album A ON SA.albumId = A.albumId
+                                WHERE A.name = \'{album}\';""")
+        return self.cursor.fetchall()
+    
+    def SelectAlbumsLabel(self, album):
+        self.cursor.execute(f"""SELECT L.name
+                                FROM Album A
+                                JOIN Label L ON A.labelId = L.labelId
+                                WHERE A.name = \'{album}\';""")
+        return self.cursor.fetchall()
+
+    def SelectAlbumsGenre(self, album):
+        self.cursor.execute(f"""SELECT G.name 
+                                FROM Album A
+                                JOIN Genre G ON A.genreId = G.genreId
+                                WHERE A.name = \'{album}\';""")
         return self.cursor.fetchall()
 
     def SelectSongs(self):
-        self.cursor.execute("""SELECT * FROM Songs;""")
+        self.cursor.execute("""SELECT name FROM Songs;""")
+        return self.cursor.fetchall()
+    
+    def SearchforSongs(self, band):
+        self.cursor.execute(f"""SELECT S.name 
+                                FROM Songs S
+                                JOIN SongBand SB ON S.songId = SB.songId
+                                JOIN Band B ON SB.bandId = B.bandId
+                                WHERE B.name = \'{band}\';""")
+        return self.cursor.fetchall()
+    
+    def GetBandFromSongName(self, song_name):
+        self.cursor.execute(f"""SELECT B.name 
+                                FROM Band B
+                                JOIN SongBand SB ON B.bandId = SB.bandId
+                                JOIN Songs S ON SB.songId = S.songId
+                                WHERE S.name = \'{song_name}\';""")
         return self.cursor.fetchall()

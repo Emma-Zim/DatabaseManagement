@@ -15,7 +15,10 @@ class Container(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, CreateConcertPage, SelectConcertPage, UpdateConcertPage, DeleteConcertPage):
+        for F in (StartPage, CreateConcertPage, 
+                SelectConcertPage, 
+                UpdateConcertPage, DeleteConcertPage, 
+                SelectAlbumsPage, SelectBandsPage, SearchSongsPage):
 
             frame = F(container, self)
             self.frames[F] = frame
@@ -152,3 +155,110 @@ class DeleteConcertPage(tk.Frame):
 
     def ShowMessage(self, text):
         tk.messagebox.showinfo("Delete Query", text)
+
+class SelectAlbumsPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self,parent)
+        self.list = tk.Listbox(self)
+        self.list_songs = tk.Listbox(self)
+        self.dict = {}
+        self.dictAlbumToGenre = {}
+        self.dictAlbumToLabel = {}
+        self.list_song_btn = None
+
+        self.genre_str = tk.StringVar()
+        self.label_str = tk.StringVar()
+        self.label = tk.Label(self, textvariable=self.genre_str).pack(padx=5, pady=10, side=tk.BOTTOM)
+        self.label = tk.Label(self, textvariable = self.label_str).pack(padx=5, pady=5, side=tk.BOTTOM)
+
+
+    def CreateListBox(self, albumsID, albumNamedict, albumToGenre, albumToLabel):
+        self.dict = albumNamedict
+        self.dictAlbumToGenre = albumToGenre
+        self.dictAlbumToLabel = albumToLabel
+        self.list.insert(0, *albumsID)
+        self.list.pack() 
+
+        self.list_song_btn = tk.Button(self, text="List song(s), genre and label of album:", 
+                                   command=self.print_selection)
+        self.list_song_btn.pack(fill = tk.BOTH) 
+
+        
+    def print_selection(self): 
+        self.list_songs.delete(0,tk.END)
+        selection = self.list.curselection()
+        targeted = None
+        for i in selection:
+            targeted = self.list.get(i)
+        
+        list_songs_from_dict = self.dict[targeted]
+        self.list_songs.insert(0, *list_songs_from_dict)
+        self.list_songs.pack()
+
+        self.genre_str.set("Genre: " + self.dictAlbumToGenre[targeted])
+        self.label_str.set("Label: " + self.dictAlbumToLabel[targeted])
+
+class SelectBandsPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self,parent)
+        self.list = tk.Listbox(self)
+        self.list_artist = tk.Listbox(self)
+        self.dict = {}
+        self.list_artist_btn = None
+    
+    def CreateListBox(self, bandName, artistNamedict):
+        self.dict = artistNamedict
+        self.list.insert(0, *bandName)
+        self.list.pack()
+        self.list_artist_btn = tk.Button(self, text="List artists in the band:", 
+                                   command=self.print_selection)
+        self.list_artist_btn.pack(fill = tk.BOTH)
+
+    def print_selection(self): 
+        self.list_artist.delete(0,tk.END)
+        selection = self.list.curselection()
+        targeted = None
+        for i in selection:
+            targeted = self.list.get(i)
+        
+        list_artists_from_dict = self.dict[targeted]
+        self.list_artist.insert(0, *list_artists_from_dict)
+        self.list_artist.pack()
+
+class SearchSongsPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self,parent)
+        self.song_search_box = tk.Entry(self)
+        self.search_song_btn = tk.Button(self, text = "SEARCH", command = self.print_selection).pack()
+        self.song_name_search = None
+        self.songToBandDict = {}
+        self.result_list_box = tk.Listbox(self)
+
+        self.string = tk.StringVar()
+        self.label = tk.Label(textvariable = self.string).pack(padx=5, pady=5, side=tk.BOTTOM)
+    
+    def CreateSearchBox(self, songToBandDict):
+        #song_search_box = songName.get()
+        self.song_search_box.pack(expand=True)
+        self.songToBandDict = songToBandDict
+        
+    def print_selection(self):
+        self.result_list_box.delete(0,tk.END)
+        song_name = self.song_search_box.get()
+        #self.label = tk.Label(text = song_name).pack()
+        self.song_name_search = song_name
+
+        search_res = []
+        for song in self.songToBandDict:
+            if self.song_name_search.lower() in song.lower():
+                search_res.append(self.songToBandDict[song])
+        
+        if len(search_res)==0:
+            self.string.set("There is no bands result from this song!")
+
+        self.result_list_box.insert(0, *search_res)
+        self.result_list_box.pack()
+
+        
+
+        

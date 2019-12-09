@@ -53,6 +53,53 @@ class Controller():
             colCount += 1
         mainFrame.showFrame(object)
 
+    def ViewAlbumsButton(self, mainFrame, object):
+    # View album queries
+        retVal = self.connection.SelectAlbums()
+        albumNamedict = {}
+        albumNametoGenre = {}
+        albumNametoLabel = {}
+
+        for albumID in retVal:
+            albumNamedict[albumID[0]] = []
+            albumNametoGenre[albumID[0]] = None
+            albumNametoLabel[albumID[0]] = None
+
+        for val in retVal:
+            songs = self.connection.SelectAlbumsSong(val[0])
+            genre = self.connection.SelectAlbumsGenre(val[0])
+            label = self. connection.SelectAlbumsLabel(val[0])
+            outputList = []
+            for song in songs:
+                outputList.append(str(song[0]))
+            albumNamedict[val[0]] = outputList
+            albumNametoGenre[val[0]] = str(genre[0][0])
+            albumNametoLabel[val[0]] = str(label[0][0])
+
+
+        albumNamelist = albumNamedict.keys()
+        mainFrame.getFrame(object).CreateListBox(albumNamelist, albumNamedict, albumNametoGenre, albumNametoLabel)
+        mainFrame.showFrame(object)
+
+    def ViewBandsButton(self, mainFrame, object):
+        # View artist queries
+        retVal = self.connection.SelectBands()
+        bandNamedict = {}
+
+        for bandName in retVal:
+            bandNamedict[bandName[0]] = []
+        for val in retVal:
+            artists = self.connection.SelectBandsArtist(val[0])
+            outputList = []
+            for artist in artists:
+                outputList.append(str(artist[0]))
+            bandNamedict[val[0]] = outputList
+        bandNamelist = bandNamedict.keys()
+        mainFrame.getFrame(object).CreateListBox(bandNamelist, bandNamedict)
+        mainFrame.showFrame(object)
+
+
+
     def UpdateConcertsPage(self, mainFrame, object):
         for widget in mainFrame.getFrame(object).winfo_children():
             widget.destroy()
@@ -154,3 +201,33 @@ class Controller():
                 obj.AddSong(song)
 
             obj.GeneratePage(self)
+    
+    def SearchforSongsButton(self, mainFrame, object):
+        retVal =self.connection.SelectBands()
+        songToBandDict = {}
+
+        for bandName in retVal:
+            songs = self.connection.SearchforSongs(bandName[0])
+            for song in songs:
+                songToBandDict[song[0]] = bandName[0]
+        print(songToBandDict)
+
+        # retVal = self.connection.SelectBands()
+        # bandNametoSong = {}
+        # for bandNametoS in retVal:
+        #     bandNametoSong[bandName[0]] = []
+        # for val in retVal:
+        #     songs =  self.connection.SearchforSongs(val[0])
+        #     outputList = []
+        #     for song in songs:
+        #         outputList.append(str(song[0]))
+        #     print(outputList)
+        #     dict[val[0]] = outputList
+
+
+        mainFrame.getFrame(object).CreateSearchBox(songToBandDict)
+        mainFrame.showFrame(object)
+                
+            
+
+

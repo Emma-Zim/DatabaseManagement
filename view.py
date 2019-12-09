@@ -16,12 +16,12 @@ newMenu.add_command(label = 'New Concert', command = lambda: controller.CreateCo
 # menu for viewing data
 viewMenu = tk.Menu(mainWindowObject)
 viewMenu.add_command(label = 'View Concerts', command = lambda: controller.ViewConcertsButton(mainWindowObject, pages.SelectConcertPage))
-viewMenu.add_command(label = 'View Artists')
-viewMenu.add_command(label = 'View Albums')
+viewMenu.add_command(label = 'View Artists', command = lambda: controller.ViewBandsButton(mainWindowObject, pages.SelectBandsPage))
+viewMenu.add_command(label = 'View Albums', command = lambda: controller.ViewAlbumsButton(mainWindowObject, pages.SelectAlbumsPage))
 
 # menu for searching
 searchMenu = tk.Menu(mainWindowObject)
-searchMenu.add_command(label = 'Search Songs')
+searchMenu.add_command(label = 'Search Songs', command = lambda: controller.SearchforSongsButton(mainWindowObject, pages.SearchSongsPage))
 searchMenu.add_command(label = 'Search Artists')
 
 # Menu for updating data
@@ -36,6 +36,7 @@ deleteMenu.add_command(label = 'Delete Concert', command = lambda: controller.De
 menu = tk.Menu(mainWindowObject)
 menu.add_cascade(label = "New", menu = newMenu)
 menu.add_cascade(label = "View", menu = viewMenu)
+menu.add_cascade(label = "Search", menu = searchMenu)
 menu.add_cascade(label = "Update", menu = updateMenu)
 menu.add_cascade(label = "Delete", menu = deleteMenu)
 menu.add_command(label = 'Exit', command = lambda: controller.QuitApplication(mainWindowObject))
