@@ -54,31 +54,6 @@ class DatabaseConnection():
         return True
 
     def AddConcert(self, bands, songs, location, date):
-        bandIds = []
-        songIds = []
-        locations = {1: "Seattle, WA", 2: "Portland, OR", 3: "Washington, DC", 4: "New York City, NY", 5: "San Francisco, CA"}
-
-        # get the location
-        loc = locations[location]
-
-        # get the bandIds
-        for b in bands:
-            bandId = "B"
-            for x in range(0, 4 - len(str(b + 1))):
-                bandId = bandId + "0"
-            bandId = bandId + str(b + 1)
-            bandIds.append(bandId)
-
-        # get the songIds
-        for s in songs:
-            songId = "S"
-            for x in range(0, 4 - len(str(s + 1))):
-                songId = songId + "0"
-            songId = songId + str(s + 1)
-            songIds.append(songId)
-
-        print(bandIds)
-
         # get the concertId
         self.cursor.execute("""SELECT COUNT(concertId) FROM Concert;""")
         concertVal = self.cursor.fetchone()[0] + 1
@@ -87,12 +62,12 @@ class DatabaseConnection():
             concertId = concertId + "0"
         concertId = concertId + str(concertVal)
 
-        self.cursor.execute("""INSERT INTO Concert (concertId, location, date) VALUES (\'{}\', \'{}\', \'{}\');""".format(concertId, loc, date))
+        self.cursor.execute("""INSERT INTO Concert (concertId, location, date) VALUES (\'{}\', \'{}\', \'{}\');""".format(concertId, location, date))
 
-        for s in songIds:
+        for s in songs:
             self.cursor.execute("""INSERT INTO SongConcert (concertId, songId) VALUES (\'{}\', \'{}\')""".format(concertId, s))
 
-        for b in bandIds:
+        for b in bands:
             self.cursor.execute("""INSERT INTO BandConcert (concertId, bandId) VALUES (\'{}\', \'{}\')""".format(concertId, b))
 
         self.connection.commit()
@@ -105,3 +80,9 @@ class DatabaseConnection():
     def SelectSongs(self):
         self.cursor.execute("""SELECT * FROM Songs;""")
         return self.cursor.fetchall()
+
+    def UpdateConcert(self, concert, location, date):
+        print(concert)
+        self.cursor.execute("""UPDATE Concert SET location = \'{}\', date = \'{}\' WHERE concertId = \'{}\';""".format(location, date, concert))
+        self.connection.commit()
+        return True

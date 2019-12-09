@@ -99,14 +99,15 @@ class UpdateConcertPage(tk.Frame):
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Update Concert Page")
         label.pack(pady=10,padx=10)
-        self.selectedConcert = None
-        self.location = 1
-        self.date = "2019-01-01"
-        self.band = 1
+        self.location = tk.IntVar(self)
+        self.dateEntry = self.CreateEntry()
         self.listBox = self.CreateListbox()
 
     def CreateListbox(self):
         self.listBox = tk.Listbox(self, width = 50, selectmode='SINGLE')
+
+    def CreateEntry(self):
+        self.dateEntry = tk.Entry(self)
 
     def AddSelection(self, outputString):
         self.listBox.insert("end", outputString)
@@ -114,26 +115,24 @@ class UpdateConcertPage(tk.Frame):
     def ShowSelection(self, c):
         tk.Label(self, text = "Select the Concert to change: ").pack()
         self.listBox.pack()
-        self.GeneratePage()
-        #tk.Button(self, text = "Delete", command = lambda: c.RemoveConcert(self, self.listBox.curselection())).pack()
 
     def ShowMessage(self, text):
         tk.messagebox.showinfo("Update Query", text)
 
-    def GeneratePage(self):
+    def GeneratePage(self, c):
         tk.Label(self, text = "Select a Location: ").pack()
         tk.Radiobutton(self, text = "Seattle, WA", variable = self.location, value = 1, indicatoron=0).pack()
         tk.Radiobutton(self, text = "Portland, OR", variable = self.location, value = 2, indicatoron=0).pack()
         tk.Radiobutton(self, text = "Washington, DC", variable = self.location, value = 3, indicatoron=0).pack()
         tk.Radiobutton(self, text = "New York City, NY", variable = self.location, value = 4, indicatoron=0).pack()
         tk.Radiobutton(self, text = "San Francisco, CA", variable = self.location, value = 5, indicatoron=0).pack()
+        self.location.set(1)
 
         tk.Label(self, text = "Enter the Date: ").pack()
-        e = tk.Entry(self)
-        e.pack()
-        e.insert(0, self.date)
+        self.dateEntry.pack()
+        self.dateEntry.insert(0, "2019-01-01")
 
-        tk.Button(self, text = "Submit").pack()
+        tk.Button(self, text = "Submit", command = lambda: c.UpdateConcert(self)).pack()
 
 class DeleteConcertPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -148,7 +147,7 @@ class DeleteConcertPage(tk.Frame):
 
     def ShowSelection(self, c):
         self.listBox.pack()
-        tk.Button(self, text = "Delete", command = lambda: c.RemoveConcert(self, self.listBox.curselection())).pack()
+        tk.Button(self, text = "Delete", command = lambda: c.RemoveConcert(self)).pack()
 
     def ShowMessage(self, text):
         tk.messagebox.showinfo("Delete Query", text)

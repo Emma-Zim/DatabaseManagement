@@ -57,10 +57,12 @@ class Controller():
         for widget in mainFrame.getFrame(object).winfo_children():
             widget.destroy()
         mainFrame.getFrame(object).CreateListbox()
+        mainFrame.getFrame(object).CreateEntry()
         vals = self.GetConcerts()
         for v in vals:
             mainFrame.getFrame(object).AddSelection(v)
         mainFrame.getFrame(object).ShowSelection(self)
+        mainFrame.getFrame(object).GeneratePage(self)
         mainFrame.showFrame(object)
 
     def DeleteConcertsPage(self, mainFrame, object):
@@ -107,13 +109,12 @@ class Controller():
             items.append(outputString)
         return items
 
-    def RemoveConcert(self, obj, item):
-        if item:
+    def RemoveConcert(self, obj):
+        if obj.listBox.curselection():
             id = "C"
-            for x in range(0, 4 - len(str(item[0] + 1))):
+            for x in range(0, 4 - len(str(obj.listBox.curselection()[0] + 1))):
                 id = id + "0"
-            id = id + str(item[0] + 1)
-            print(id)
+            id = id + str(obj.listBox.curselection()[0] + 1)
             retVal = self.connection.RemoveFromConcert(id)
             if retVal:
                 obj.ShowMessage("Delete Successful")
@@ -130,7 +131,30 @@ class Controller():
     def CreateConcert(self, obj):
         if obj.bands.curselection() and obj.songs.curselection():
             # Add the Concert to the database
-            retVal = self.connection.AddConcert(obj.bands.curselection(), obj.songs.curselection(), obj.location.get(), obj.dateEntry.get())
+            bandIds = []
+            songIds = []
+            locations = {1: "Seattle, WA", 2: "Portland, OR", 3: "Washington, DC", 4: "New York City, NY", 5: "San Francisco, CA"}
+
+            # get the location
+            loc = locations[obj.location.get()]
+
+            # get the bandIds
+            for b in obj.bands.curselection():
+                bandId = "B"
+                for x in range(0, 4 - len(str(b + 1))):
+                    bandId = bandId + "0"
+                bandId = bandId + str(b + 1)
+                bandIds.append(bandId)
+
+            # get the songIds
+            for s in obj.songs.curselection():
+                songId = "S"
+                for x in range(0, 4 - len(str(s + 1))):
+                    songId = songId + "0"
+                songId = songId + str(s + 1)
+                songIds.append(songId)
+
+            retVal = self.connection.AddConcert(bandIds, songIds, loc, obj.dateEntry.get())
             if retVal:
                 obj.ShowMessage("Create Successful")
                 for widget in obj.winfo_children():
@@ -150,3 +174,28 @@ class Controller():
                 obj.GeneratePage(self)
             else:
                 obj.ShowMessage("Create Failed")
+
+    def UpdateConcert(self, obj):
+        if obj.listBox.curselection():
+            locations = {1: "Seattle, WA", 2: "Portland, OR", 3: "Washington, DC", 4: "New York City, NY", 5: "San Francisco, CA"}
+            loc = locations[obj.location.get()]
+
+            id = "C"
+            for x in range(0, 4 - len(str(obj.listBox.curselection()[0] + 1))):
+                id = id + "0"
+            id = id + str(obj.listBox.curselection()[0] + 1)
+
+            retVal = self.connection.UpdateConcert(id, loc, obj.dateEntry.get())
+            if retVal:
+                obj.ShowMessage("Create Successful")
+                for widget in obj.winfo_children():
+                    widget.destroy()
+                obj.CreateListbox()
+                obj.CreateEntry()
+                vals = self.GetConcerts()
+                for v in vals:
+                    obj.AddSelection(v)
+                obj.ShowSelection(self)
+                obj.GeneratePage(self)
+            else:
+                obj.ShowMessage("Update Failed")
