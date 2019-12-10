@@ -20,7 +20,7 @@ viewMenu.add_command(label = 'View Bands', command = lambda: controller.ViewBand
 viewMenu.add_command(label = 'View Members Of Band', command = lambda: controller.ViewBand(mainWindowObject, pages.ShowBandArtists))
 viewMenu.add_command(label = 'View Albums From Band', command = lambda: controller.ViewBand(mainWindowObject, pages.ShowAlbumsFromBand))
 viewMenu.add_command(label = 'View Songs From Album', command = lambda: controller.ViewAlbum(mainWindowObject, pages.ShowSongsFromAlbum))
-viewMenu.add_command(label = "View Playlists", command = lambda: controller.ViewPlaylistsButton(mainWindowObject, pages.SelectPlaylistsPage))
+viewMenu.add_command(label = "View Playlist Duration", command = lambda: controller.ViewPlaylistsButton(mainWindowObject, pages.SelectPlaylistsPage))
 
 # menu for searching
 searchMenu = tk.Menu(mainWindowObject)
