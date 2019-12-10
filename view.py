@@ -41,6 +41,6 @@ menu.add_cascade(label = "New", menu = newMenu)
 menu.add_cascade(label = "View", menu = viewMenu)
 menu.add_cascade(label = "Update", menu = updateMenu)
 menu.add_cascade(label = "Delete", menu = deleteMenu)
-menu.add_command(label = 'Exit', command = lambda: controller.QuitApplication(mainWindowObject))
+menu.add_command(label = 'Exit', command = mainWindowObject.quit)
 
 mainWindowObject.config(menu = menu)
