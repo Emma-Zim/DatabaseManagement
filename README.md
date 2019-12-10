@@ -14,6 +14,10 @@ This repository contains the following things:
 
 # Description of Database
 This database...
+This database currently contains many entities, all of which are realated and populated. A diagram of the relationships between the entities can be found within this GitHub repository. Additionally, a description of all attributes, their types, and their restrictions can be found in the same place. 
+
+# Application Requirements
+This application requires the use of Python 3, meaning that if the machine being used does not have this version of Python, the application will not run.
 
 # How To Run Application
 To run this application, it is recommended that the following steps are followed.
