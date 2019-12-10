@@ -93,6 +93,14 @@ class Controller():
 
         return items
 
+    def GetArtists(self):
+        items = []
+        retVal = self.connection.SelectArtists()
+        for val in retVal:
+            items.append(val[1])
+
+        return items
+
     def GetConcerts(self):
         items = []
         retVal = self.connection.SelectConcert()
@@ -361,5 +369,103 @@ class Controller():
 
         for y in retVal:
             songs +=  y[0] + "\n"
+        obj.ShowMessage(songs)
+
+    def ViewBand(self, mainFrame, object):
+        for widget in mainFrame.getFrame(object).winfo_children():
+            widget.destroy()
+        mainFrame.getFrame(object).CreateListbox()
+        vals = self.connection.SelectBands()
+        for v in vals:
+            mainFrame.getFrame(object).AddSelection(v[1])
+        mainFrame.getFrame(object).ShowSelection(self)
+        mainFrame.showFrame(object)
+        #for v in vals:
+        #    mainFrame.getFrame(object).AddSelection(v)
+        #mainFrame.getFrame(object).ShowSelection(self)
+        mainFrame.showFrame(object)
+
+    def ViewAlbum(self, mainFrame, object):
+        for widget in mainFrame.getFrame(object).winfo_children():
+            widget.destroy()
+        mainFrame.getFrame(object).CreateListbox()
+        vals = self.connection.SelectAlbum()
+        for v in vals:
+            mainFrame.getFrame(object).AddSelection(v[1])
+        mainFrame.getFrame(object).ShowSelection(self)
+        mainFrame.showFrame(object)
+        #for v in vals:
+        #    mainFrame.getFrame(object).AddSelection(v)
+        #mainFrame.getFrame(object).ShowSelection(self)
+        mainFrame.showFrame(object)
+
+    def showAlbumsBand(self, obj, item):
+        if item:
+            id = "B"
+            for x in range(0, 4 - len(str(item[0]+1))):
+                id = id + "0"
+            id = id + str(item[0] + 1)
+            print(id)
+
+        retVal=self.connection.SelectAlbumsFromBand(id)
+        print retVal
+
+        albums = ""
+
+        for y in retVal:
+            albums +=  y[0] + ", " + y[1] +" recording" + "\n"
+
+        obj.ShowMessage(albums)
+
+
+    def showSongsAlbum(self, obj, item):
+        if item:
+            id = "A"
+            for x in range(0, 4 - len(str(item[0]+1))):
+                id = id + "0"
+            id = id + str(item[0] + 1)
+            print(id)
+
+        retVal=self.connection.SelectSongsFromAlbum(id)
+        print retVal
+
+        songs = ""
+
+        for y in retVal:
+            songs +=  y[0] + "\n"
 
         obj.ShowMessage(songs)
+
+    def showSongsAlbum(self, obj, item):
+        if item:
+            id = "A"
+            for x in range(0, 4 - len(str(item[0]+1))):
+                id = id + "0"
+            id = id + str(item[0] + 1)
+            print(id)
+
+        retVal=self.connection.SelectSongsFromAlbum(id)
+        print retVal
+
+        songs = ""
+
+        for y in retVal:
+            songs +=  y[0] + "\n"
+
+        obj.ShowMessage(songs)
+
+    def SelectMembersFromBand(self, obj, item):
+        if item:
+            id = "B"
+            for x in range(0, 4 - len(str(item[0]+1))):
+                id = id + "0"
+            id = id + str(item[0] + 1)
+            print(id)
+
+        retVal=self.connection.SelectMembersFromBand(id)
+        print retVal
+
+        songs = ""
+
+        for y in retVal:
+            songs +=  y[0] + "\n"
