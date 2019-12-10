@@ -16,7 +16,7 @@ class Container(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, CreateConcertPage, SelectConcertPage, UpdateConcertPage, DeleteConcertPage, ShowAlbumsFromBand, ShowSongsFromAlbum, ShowBandArtists):
+        for F in (StartPage, CreateConcertPage, SelectConcertPage, UpdateConcertPage, DeleteConcertPage, ShowAlbumsFromBand, ShowSongsFromAlbum, ShowBandArtists, ShowBands):
 
             frame = F(container, self)
             self.frames[F] = frame
@@ -203,6 +203,23 @@ class ShowBandArtists(tk.Frame):
     def ShowSelection(self, c):
         self.listBox.pack()
         tk.Button(self, text = "Show Members", command = lambda: c.SelectMembersFromBand(self, self.listBox.curselection())).pack()
+
+    def ShowMessage(self, text):
+        tk.messagebox.showinfo("Band Members:", text)
+
+class ShowBands(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.listBox = self.CreateListbox()
+
+    def CreateListbox(self):
+        self.listBox = tk.Listbox(self, width = 50, selectmode='SINGLE')
+
+    def AddSelection(self, outputString):
+        self.listBox.insert("end", outputString)
+
+    def ShowSelection(self, c):
+        self.listBox.pack()
 
     def ShowMessage(self, text):
         tk.messagebox.showinfo("Band Members:", text)
