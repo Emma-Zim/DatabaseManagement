@@ -6,7 +6,8 @@
  Album: Habits Of My Heart EP
  Songs: Moondust, I'll Be Good, What Should I Do, Come Back For Me, Habits Of My Heart
  Concert: Jaymes Young, Phil Good
- Playlist: Favorites
+ Playlist: Kelby's Song
+
  */
 insert into Band (bandId, name, size) VALUES ('B0001', 'Jaymes Young', 1);
 insert into Artist (artistId, name) VALUES ('R0001', 'Jaymes Young');
@@ -20,9 +21,10 @@ insert into Songs (songId, duration, name, lyrics) VALUES ('S0003', '00:03:40', 
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0004', '00:02:29', 'Come Back For Me' , null);
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0005', '00:03:31', 'Habits Of My Heart' , null);
 insert into BandArtist (bandId, artistId) VALUES ('B0001', 'R0001');
-insert into BandConcert (bandId, concertId) VALUES ('B0001', 'C0001');
 insert into Concert (concertId, location, date) VALUES ('C0001', 'Seattle, Wa', '2019-11-10');
+insert into BandConcert (bandId, concertId) VALUES ('B0001', 'C0001');
 insert into Playlist (playlistId, name) VALUES ('P0001', 'Kelby''s Songs');
+insert into Playlist (playlistId, name) VALUES ('P0002', 'Emma''s Songs');
 insert into SongAlbum (songId, albumId) VALUES ('S0001', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0002', 'A0001');
 insert into SongAlbum (songId, albumId) VALUES ('S0003', 'A0001');
@@ -48,7 +50,7 @@ insert into SongPlaylist (songId, playlistId) VALUE ('S0002', 'P0001');
  Album: Do You Ever?
  Song: Do You Ever?
  Concert: Jaymes Young, Phil Good
- Playlist: Favorites
+ Playlist: Kelby's Songs
 */
 insert into Band (bandId, name, size) VALUES ('B0002', 'Phil Good', 1);
 insert into Artist (artistId, name) VALUES ('R0002', 'Phil Good');
@@ -78,7 +80,8 @@ insert into SongConcert (songId, concertId) VALUE ('S0006', 'C0001');
 insert into Album (albumId, name, recordingType, genreId, labelId) VALUES('A0003', 'Growing Up', 'Studio', 'G0003', 'L0002');
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0007', '00:03:07', 'Be Somebody', null);
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0008', '00:02:45', 'Growing Up', null);
-insert into Songs (songId, duration, name, lyrics) VALUES ('S0009', '00:03:07', 'I''ll Fix It', null);  insert into Songs (songId, duration, name, lyrics) VALUES ('S0010', '00:02:37', 'I Miss You', null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0009', '00:03:07', 'I''ll Fix It', null);
+insert into Songs (songId, duration, name, lyrics) VALUES ('S0010', '00:02:37', 'I Miss You', null);
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0011', '00:02:38', 'Sleeping In', null);
 insert into Songs (songId, duration, name, lyrics) VALUES ('S0012', '00:02:17', 'Better (Stripped)', null);
 insert into SongAlbum (songId, albumId) VALUES ('S0007', 'A0003');
@@ -460,7 +463,7 @@ insert into SongPlaylist (songId, playlistId) VALUE ('S0018', 'P0001');
  Album: The Way It Was
  Songs: White Dress, You And Me, Something To Believe In, Forever And Always, What I Know, American Secrets, Kiss Me Slowly, Halfway, Philadelphia
  Concert: None
- Playlist: NOne
+ Playlist: Emma's Songs
 */
 insert into Band (bandId, name, size) VALUES ('B0004', 'Parachute', 5);
 insert into Artist (artistId, name) VALUES ('R0006', 'Will Anderson');
@@ -621,7 +624,6 @@ insert into SongBand (songId, bandId) VALUES ('S0048', 'B0004');
 insert into SongBand (songId, bandId) VALUES ('S0049', 'B0004');
 insert into SongBand (songId, bandId) VALUES ('S0050', 'B0004');
 insert into SongBand (songId, bandId) VALUES ('S0051', 'B0004');
-insert into Playlist (playlistId, name) VALUES ('P0002', 'Emma''s Songs');
 insert into SongPlaylist (songId, playlistId) VALUES ('S0044', 'P0002');
 
 
