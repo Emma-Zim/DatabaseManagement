@@ -16,18 +16,9 @@ newMenu.add_command(label = 'New Concert', command = lambda: controller.CreateCo
 # menu for viewing data
 viewMenu = tk.Menu(mainWindowObject)
 viewMenu.add_command(label = 'View Concerts', command = lambda: controller.ViewConcertsButton(mainWindowObject, pages.SelectConcertPage))
-<<<<<<< HEAD
 viewMenu.add_command(label = 'View Artists', command = lambda: controller.ViewBandsButton(mainWindowObject, pages.SelectBandsPage))
 viewMenu.add_command(label = 'View Albums', command = lambda: controller.ViewAlbumsButton(mainWindowObject, pages.SelectAlbumsPage))
 viewMenu.add_command(label = "View Playlists", command = lambda: controller.ViewPlaylistsButton(mainWindowObject, pages.SelectPlaylistsPage))
-=======
-viewMenu.add_command(label = 'View Artists')
-viewMenu.add_command(label = 'View Albums From Band', command = lambda: controller.ViewBand(mainWindowObject, pages.ShowAlbumsFromBand))
-viewMenu.add_command(label = 'View Songs From Album', command = lambda: controller.ViewAlbum(mainWindowObject, pages.ShowSongsFromAlbum))
-viewMenu.add_command(label = 'View Members Of Band', command = lambda: controller.ViewBand(mainWindowObject, pages.ShowBandArtists))
-
-
->>>>>>> 19bdcbc9d356dfb241bebc22e2ad88747c22b382
 # menu for searching
 searchMenu = tk.Menu(mainWindowObject)
 searchMenu.add_command(label = 'Search Songs', command = lambda: controller.SearchforSongsButton(mainWindowObject, pages.SearchSongsPage))
