@@ -161,10 +161,10 @@ class SelectPlaylistsPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
         self.list = tk.Listbox(self)
-        self.playlist_btn = tk.Button(self, text = "Show", command=self.print_selection)
+        self.playlist_btn = tk.Button(self, text = "SHOW DURATION", command=self.print_selection)
         self.dictPlaylistNameToDuration = {}
         self.playlistNames = None
-        self.label = tk.Label(self, text = '' + 'Second(s)')
+        self.label = tk.Label(self, text = '' + 'In Second(s)')
         
 
     
@@ -291,7 +291,7 @@ class SearchSongsPage(tk.Frame):
 class SearchAlbumsPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
-        self.artist_title = tk.Label (self, text = "Artist Name: ").grid(row = 0)
+        self.artist_title = tk.Label (self, text = "Artist's Name: ").grid(row = 0)
         self.album_search_box = tk.Entry(self)
         self.search_album_btn = tk.Button(self, text = "SEARCH", command = self.print_selection).grid(row = 0, column = 2)
         self.album_name_search = None
@@ -304,7 +304,6 @@ class SearchAlbumsPage(tk.Frame):
         self.albumToBandDict = albumToBandDict
         
     def print_selection(self):
-        self.label_result.pack(side = tk.TOP)
         self.result_list_box.delete(0,tk.END)
 
         album_name = self.album_search_box.get()
