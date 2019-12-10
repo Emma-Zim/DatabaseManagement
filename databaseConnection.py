@@ -78,6 +78,10 @@ class DatabaseConnection():
         self.cursor.execute("""SELECT * FROM Band;""")
         return self.cursor.fetchall()
 
+    def SelectAlbum(self):
+        self.cursor.execute("""SELECT * FROM Album;""")
+        return self.cursor.fetchall()
+
     def SelectSongs(self):
         self.cursor.execute("""SELECT * FROM Songs;""")
         return self.cursor.fetchall()
@@ -86,3 +90,25 @@ class DatabaseConnection():
         self.cursor.execute("""UPDATE Concert SET location = \'{}\', date = \'{}\' WHERE concertId = \'{}\';""".format(location, date, concert))
         self.connection.commit()
         return True
+
+    def SelectAlbumsFromBand(self, id):
+        self.cursor.execute(f"""SELECT A.name, A.recordingType FROM Album A
+                                        JOIN BandAlbum BA ON A.albumId=BA.albumId
+                                        JOIN Band B ON BA.bandId=B.bandId
+                                        WHERE B.bandId = \'{id}\';""")
+        return self.cursor.fetchall()
+
+
+    def SelectSongsFromAlbum(self, id):
+        self.cursor.execute(f"""SELECT S.name, S.lyrics FROM Songs S
+                                        JOIN SongAlbum SA ON S.songId=SA.songId
+                                        JOIN Album A ON SA.albumId=A.albumId
+                                        WHERE A.albumId = \'{id}\';""")
+        return self.cursor.fetchall()
+
+    def SelectMembersFromBand(self, id):
+        self.cursor.execute(f"""SELECT A.name FROM Artist A
+                                        JOIN BandArtist BA ON A.artistId=BA.artistId
+                                        JOIN Band B ON B.bandId=BA.bandId
+                                        WHERE B.bandId = \'{id}\';""")
+        return self.cursor.fetchall()
