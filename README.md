@@ -9,7 +9,7 @@ This repository contains the following things:
 # Description of Database
 This database...
 
-#How To Run Application
+# How To Run Application
 To run this application, it is recommended that the following steps are followed.
 MacOS:
 -Navigate to terminal
