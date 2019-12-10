@@ -22,18 +22,18 @@ MacOS:
 
 1.Open terminal
 
-2. Navigate to project directory
+2.Navigate to project directory
 
-3. Pull files from GitHub
+3.Pull files from GitHub
 
-4. Run command "python main.py" in terminal
+4.Run command "python main.py" in terminal
 
 Windows OS:
 
 1.Open command line
 
-2. Navigate to project directory
+2.Navigate to project directory
 
-3. Pull files from GitHub
+3.Pull files from GitHub
 
-4. Run command "python main.py" in command line
+4.Run command "python main.py" in command line
