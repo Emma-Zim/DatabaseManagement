@@ -258,7 +258,7 @@ class Controller():
             if flag:
                 retVal = self.connection.UpdateConcert(id, loc, obj.dateEntry.get())
                 if retVal:
-                    obj.ShowMessage("Create Successful")
+                    obj.ShowMessage("Update Successful")
                     for widget in obj.winfo_children():
                         widget.destroy()
                     obj.CreateListbox()
@@ -299,25 +299,6 @@ class Controller():
         #mainFrame.getFrame(object).ShowSelection(self)
         mainFrame.showFrame(object)
 
-    def showAlbumsBand(self, obj, item):
-        if item:
-            id = "B"
-            for x in range(0, 4 - len(str(item[0]+1))):
-                id = id + "0"
-            id = id + str(item[0] + 1)
-            print(id)
-
-        retVal=self.connection.SelectAlbumsFromBand(id)
-        print retVal
-
-        albums = ""
-
-        for y in retVal:
-            albums +=  y[0] + ", " + y[1] +" recording" + "\n"
-
-        obj.ShowMessage(albums)
-
-
     def showSongsAlbum(self, obj, item):
         if item:
             id = "A"
@@ -327,25 +308,7 @@ class Controller():
             print(id)
 
         retVal=self.connection.SelectSongsFromAlbum(id)
-        print retVal
-
-        songs = ""
-
-        for y in retVal:
-            songs +=  y[0] + "\n"
-
-        obj.ShowMessage(songs)
-
-    def showSongsAlbum(self, obj, item):
-        if item:
-            id = "A"
-            for x in range(0, 4 - len(str(item[0]+1))):
-                id = id + "0"
-            id = id + str(item[0] + 1)
-            print(id)
-
-        retVal=self.connection.SelectSongsFromAlbum(id)
-        print retVal
+        print(retVal)
 
         songs = ""
 
@@ -363,11 +326,12 @@ class Controller():
             print(id)
 
         retVal=self.connection.SelectMembersFromBand(id)
-        print retVal
+        print(retVal)
 
         songs = ""
 
         for y in retVal:
+            print(y)
             songs +=  y[0] + "\n"
         obj.ShowMessage(songs)
 
@@ -408,7 +372,7 @@ class Controller():
             print(id)
 
         retVal=self.connection.SelectAlbumsFromBand(id)
-        print retVal
+        print(retVal)
 
         albums = ""
 
@@ -416,56 +380,3 @@ class Controller():
             albums +=  y[0] + ", " + y[1] +" recording" + "\n"
 
         obj.ShowMessage(albums)
-
-
-    def showSongsAlbum(self, obj, item):
-        if item:
-            id = "A"
-            for x in range(0, 4 - len(str(item[0]+1))):
-                id = id + "0"
-            id = id + str(item[0] + 1)
-            print(id)
-
-        retVal=self.connection.SelectSongsFromAlbum(id)
-        print retVal
-
-        songs = ""
-
-        for y in retVal:
-            songs +=  y[0] + "\n"
-
-        obj.ShowMessage(songs)
-
-    def showSongsAlbum(self, obj, item):
-        if item:
-            id = "A"
-            for x in range(0, 4 - len(str(item[0]+1))):
-                id = id + "0"
-            id = id + str(item[0] + 1)
-            print(id)
-
-        retVal=self.connection.SelectSongsFromAlbum(id)
-        print retVal
-
-        songs = ""
-
-        for y in retVal:
-            songs +=  y[0] + "\n"
-
-        obj.ShowMessage(songs)
-
-    def SelectMembersFromBand(self, obj, item):
-        if item:
-            id = "B"
-            for x in range(0, 4 - len(str(item[0]+1))):
-                id = id + "0"
-            id = id + str(item[0] + 1)
-            print(id)
-
-        retVal=self.connection.SelectMembersFromBand(id)
-        print retVal
-
-        songs = ""
-
-        for y in retVal:
-            songs +=  y[0] + "\n"
