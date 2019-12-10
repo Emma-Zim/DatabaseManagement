@@ -18,17 +18,15 @@ viewMenu = tk.Menu(mainWindowObject)
 viewMenu.add_command(label = 'View Concerts', command = lambda: controller.ViewConcertsButton(mainWindowObject, pages.SelectConcertPage))
 viewMenu.add_command(label = 'View Bands', command = lambda: controller.ViewBand(mainWindowObject, pages.ShowBands))
 viewMenu.add_command(label = 'View Members Of Band', command = lambda: controller.ViewBand(mainWindowObject, pages.ShowBandArtists))
-
-viewMenu.add_command(label = 'View Artists', command = lambda: controller.ViewBandsButton(mainWindowObject, pages.SelectBandsPage))
-viewMenu.add_command(label = 'View Albums', command = lambda: controller.ViewAlbumsButton(mainWindowObject, pages.SelectAlbumsPage))
-viewMenu.add_command(label = "View Playlists", command = lambda: controller.ViewPlaylistsButton(mainWindowObject, pages.SelectPlaylistsPage))
 viewMenu.add_command(label = 'View Albums From Band', command = lambda: controller.ViewBand(mainWindowObject, pages.ShowAlbumsFromBand))
 viewMenu.add_command(label = 'View Songs From Album', command = lambda: controller.ViewAlbum(mainWindowObject, pages.ShowSongsFromAlbum))
+viewMenu.add_command(label = "View Playlists", command = lambda: controller.ViewPlaylistsButton(mainWindowObject, pages.SelectPlaylistsPage))
 
 # menu for searching
 searchMenu = tk.Menu(mainWindowObject)
 searchMenu.add_command(label = 'Search Songs', command = lambda: controller.SearchforSongsButton(mainWindowObject, pages.SearchSongsPage))
-searchMenu.add_command(label = 'Search Artists', command = lambda: controller.SearchforAlbumsButton(mainWindowObject, pages.SearchAlbumsPage))
+searchMenu.add_command(label = 'Search Bands', command = lambda: controller.SearchforAlbumsButton(mainWindowObject, pages.SearchAlbumsPage))
+searchMenu.add_command(label = "Search Playlists", command = lambda: controller.SearchforPlaylistsButton(mainWindowObject, pages.SearchPlaylistsPage))
 
 # Menu for updating data
 updateMenu = tk.Menu(mainWindowObject)

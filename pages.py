@@ -16,12 +16,10 @@ class Container(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, CreateConcertPage,
-                SelectConcertPage,
-                UpdateConcertPage, DeleteConcertPage,
-                SelectAlbumsPage, SelectBandsPage, SelectPlaylistsPage,
-                SearchSongsPage, SearchAlbumsPage, ShowAlbumsFromBand,
-                  ShowSongsFromAlbum, ShowBandArtists):
+        for F in (StartPage, CreateConcertPage, SelectConcertPage,
+                    UpdateConcertPage, DeleteConcertPage, SelectPlaylistsPage,
+                    SearchSongsPage, SearchAlbumsPage, ShowAlbumsFromBand,
+                    ShowSongsFromAlbum, ShowBandArtists, ShowBands, SearchPlaylistsPage):
 
             frame = F(container, self)
             self.frames[F] = frame
@@ -167,8 +165,6 @@ class SelectPlaylistsPage(tk.Frame):
         self.playlistNames = None
         self.label = tk.Label(self, text = '' + 'In Second(s)')
 
-
-
     def CreateListBox (self, playlistNameDict):
         self.dictPlaylistNameToDuration = playlistNameDict
         self.playlistNames = playlistNameDict.keys()
@@ -185,7 +181,11 @@ class SelectPlaylistsPage(tk.Frame):
             targeted = self.list.get(i)
 
         targeted_duration = self.dictPlaylistNameToDuration[targeted]
-        self.label.config(text=targeted_duration)
+        hours = (targeted_duration/60)/60
+        minutes = (hours % 1) * 60
+        seconds = (minutes % 1) * 60
+        outputString = "Hours: " + str(int(hours)) + "\nMinutes: " + str(int(minutes)) + "\nSeconds: " + str(int(seconds))
+        self.label.config(text=outputString)
 
 class SelectAlbumsPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -210,7 +210,7 @@ class SelectAlbumsPage(tk.Frame):
         self.list.insert(0, *albumsID)
         self.list.pack()
 
-        self.list_song_btn = tk.Button(self, text="List song(s), genre and label of album:", 
+        self.list_song_btn = tk.Button(self, text="List song(s), genre and label of album:",
                                    command=self.print_selection)
         self.list_song_btn.pack(fill = tk.BOTH)
 
@@ -261,12 +261,12 @@ class SearchSongsPage(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.title = tk.Label (self, text = "Song Keyword(s): ").grid(row = 0)
         self.song_search_box = tk.Entry(self)
-        self.search_song_btn = tk.Button(self, text = "SEARCH", command = self.print_selection).grid(row = 0, column = 2)
+        self.search_song_btn = tk.Button(self, text = "Search", command = self.print_selection).grid(row = 0, column = 2)
         self.song_name_search = None
         self.songToBandDict = {}
         self.result_list_box = tk.Listbox(self, width = 60)
 
-        self.label_result = tk.Label(self, text = "No Bands result from this song!")
+        self.label_result = tk.Label(self, text = "No songs matching this search")
     def CreateSearchBox(self, songToBandDict):
         self.song_search_box.grid(row = 0, column = 1)
         self.songToBandDict = songToBandDict
@@ -288,17 +288,16 @@ class SearchSongsPage(tk.Frame):
         self.result_list_box.insert(0, *search_res)
         self.result_list_box.grid(row = 1, column = 1)
 
-
 class SearchAlbumsPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
-        self.artist_title = tk.Label (self, text = "Artist's Name: ").grid(row = 0)
+        self.artist_title = tk.Label (self, text = "Band Name: ").grid(row = 0)
         self.album_search_box = tk.Entry(self)
-        self.search_album_btn = tk.Button(self, text = "SEARCH", command = self.print_selection).grid(row = 0, column = 2)
+        self.search_album_btn = tk.Button(self, text = "Search", command = self.print_selection).grid(row = 0, column = 2)
         self.album_name_search = None
         self.albumToBandDict = {}
         self.result_list_box = tk.Listbox(self, width = 60)
-        self.label_result = tk.Label(self, text = "No Albums result from this Band!")
+        self.label_result = tk.Label(self, text = "No bands matching this search")
 
     def CreateSearchBox(self, albumToBandDict):
         self.album_search_box.grid(row = 0, column = 1)
@@ -392,3 +391,36 @@ class ShowBands(tk.Frame):
 
     def ShowMessage(self, text):
         tk.messagebox.showinfo("Band Members:", text)
+
+class SearchPlaylistsPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self,parent)
+        self.artist_title = tk.Label (self, text = "Playlist Name: ").grid(row = 0)
+        self.album_search_box = tk.Entry(self)
+        self.search_album_btn = tk.Button(self, text = "Search", command = self.print_selection).grid(row = 0, column = 2)
+        self.album_name_search = None
+        self.albumToBandDict = {}
+        self.result_list_box = tk.Listbox(self, width = 60)
+        self.label_result = tk.Label(self, text = "No playlists matching this search")
+
+    def CreateSearchBox(self, albumToBandDict):
+        self.album_search_box.grid(row = 0, column = 1)
+        self.albumToBandDict = albumToBandDict
+
+    def print_selection(self):
+        self.result_list_box.delete(0,tk.END)
+
+        album_name = self.album_search_box.get()
+        self.album_name_search = album_name
+
+        search_res = []
+        for album in self.albumToBandDict:
+            if self.album_name_search.lower() in album.lower():
+                search_res.append(album)
+
+        if len(search_res)==0:
+            self.label_result.grid(row = 2, column = 1)
+            self.after(5000, self.label_result.grid_forget)
+
+        self.result_list_box.insert(0, *search_res)
+        self.result_list_box.grid(row = 1, column = 1)
