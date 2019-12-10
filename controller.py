@@ -55,6 +55,82 @@ class Controller():
             colCount += 1
         mainFrame.showFrame(object)
 
+    def ViewAlbumsButton(self, mainFrame, object):
+    # View album queries
+        retVal = self.connection.SelectAlbums()
+        albumNamedict = {}
+        albumNametoGenre = {}
+        albumNametoLabel = {}
+
+        for albumID in retVal:
+            albumNamedict[albumID[0]] = []
+            albumNametoGenre[albumID[0]] = None
+            albumNametoLabel[albumID[0]] = None
+
+        for val in retVal:
+            songs = self.connection.SelectAlbumsSong(val[0])
+            genre = self.connection.SelectAlbumsGenre(val[0])
+            label = self. connection.SelectAlbumsLabel(val[0])
+            outputList = []
+            for song in songs:
+                outputList.append(str(song[0]))
+            albumNamedict[val[0]] = outputList
+            albumNametoGenre[val[0]] = str(genre[0][0])
+            albumNametoLabel[val[0]] = str(label[0][0])
+
+
+        albumNamelist = albumNamedict.keys()
+        mainFrame.getFrame(object).CreateListBox(albumNamelist, albumNamedict, albumNametoGenre, albumNametoLabel)
+        mainFrame.showFrame(object)
+
+    def ViewBandsButton(self, mainFrame, object):
+        # View artist queries
+        retVal = self.connection.SelectBands()
+        bandNamedict = {}
+
+        for bandName in retVal:
+            bandNamedict[bandName[0]] = []
+        for val in retVal:
+            artists = self.connection.SelectBandsArtist(val[0])
+            outputList = []
+            for artist in artists:
+                outputList.append(str(artist[0]))
+            bandNamedict[val[0]] = outputList
+        bandNamelist = bandNamedict.keys()
+        mainFrame.getFrame(object).CreateListBox(bandNamelist, bandNamedict)
+        mainFrame.showFrame(object)
+    
+    def ViewPlaylistsButton(self, mainFrame, object):
+        #View total duration of playlist queries
+        retVal = self.connection.SelectPlaylist()
+        playlistIdDict = {}
+
+        for playlist in retVal:
+            durations = self.connection.ViewPlaylistDuration(playlist[0])
+            outputList = []
+            for duration in durations:
+                outputList.append(int(duration[0]))
+            playlistIdDict[playlist[0]] = outputList
+
+        playlistIdList = playlistIdDict.keys()
+        #print(playlistIdDict)
+        playlistNameDict = {}
+        for id in playlistIdDict:
+            playlistNames = self.connection.SelectPlaylistName(id)
+            for name in playlistNames:
+                playlistNameDict[name[0]]=playlistIdDict[id]
+
+        for name in playlistNameDict:
+            total = sum(playlistNameDict[name])
+            playlistNameDict[name]=total
+        
+        mainFrame.getFrame(object).CreateListBox(playlistNameDict)
+        mainFrame.showFrame(object)
+
+
+        
+
+
     def UpdateConcertsPage(self, mainFrame, object):
         for widget in mainFrame.getFrame(object).winfo_children():
             widget.destroy()
@@ -378,5 +454,27 @@ class Controller():
 
         for y in retVal:
             albums +=  y[0] + ", " + y[1] +" recording" + "\n"
-
         obj.ShowMessage(albums)
+
+    def SearchforSongsButton(self, mainFrame, object):
+        retVal =self.connection.SelectBands()
+        songToBandDict = {}
+
+        for bandName in retVal:
+            songs = self.connection.SearchforSongs(bandName[0])
+            for song in songs:
+                songToBandDict[song[0]] = bandName[0]
+
+        mainFrame.getFrame(object).CreateSearchBox(songToBandDict)
+        mainFrame.showFrame(object)
+    
+    def SearchforAlbumsButton (self, mainFrame, object):
+        retVal = self.connection.SelectBands()
+        albumToBandDict = {}
+        for bandName in retVal:
+            albums = self.connection.SearchforAlbums(bandName[0])
+            for album in albums:
+                albumToBandDict[album[0]] = bandName[0]
+
+        mainFrame.getFrame(object).CreateSearchBox(albumToBandDict)
+        mainFrame.showFrame(object)
