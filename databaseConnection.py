@@ -75,7 +75,40 @@ class DatabaseConnection():
         return True
 
     def SelectBands(self):
-        self.cursor.execute("""SELECT * FROM Band;""")
+        self.cursor.execute("""SELECT name FROM Band;""")
+        return self.cursor.fetchall()
+
+    def SelectBandsArtist(self, artists):
+        self.cursor.execute(f"""SELECT A.name
+                                FROM Artist A
+                                JOIN BandArtist BA ON A.artistId = BA.artistId
+                                JOIN Band B ON BA.bandId = B.bandId
+                                WHERE B.name = \'{artists}\';""")
+        return self.cursor.fetchall()
+
+    def SelectAlbums(self):
+        self.cursor.execute("""SELECT name FROM Album;""")
+        return self.cursor.fetchall()
+
+    def SelectAlbumsSong(self, album):
+        self.cursor.execute(f"""SELECT S.name FROM Songs S
+                                JOIN SongAlbum SA ON S.songId = SA.songId
+                                JOIN Album A ON SA.albumId = A.albumId
+                                WHERE A.name = \'{album}\';""")
+        return self.cursor.fetchall()
+
+    def SelectAlbumsLabel(self, album):
+        self.cursor.execute(f"""SELECT L.name
+                                FROM Album A
+                                JOIN Label L ON A.labelId = L.labelId
+                                WHERE A.name = \'{album}\';""")
+        return self.cursor.fetchall()
+
+    def SelectAlbumsGenre(self, album):
+        self.cursor.execute(f"""SELECT G.name
+                                FROM Album A
+                                JOIN Genre G ON A.genreId = G.genreId
+                                WHERE A.name = \'{album}\';""")
         return self.cursor.fetchall()
 
     def SelectAlbum(self):
@@ -83,7 +116,39 @@ class DatabaseConnection():
         return self.cursor.fetchall()
 
     def SelectSongs(self):
-        self.cursor.execute("""SELECT * FROM Songs;""")
+        self.cursor.execute("""SELECT name FROM Songs;""")
+        return self.cursor.fetchall()
+
+    def SearchforSongs(self, band):
+        self.cursor.execute(f"""SELECT S.name
+                                FROM Songs S
+                                JOIN SongBand SB ON S.songId = SB.songId
+                                JOIN Band B ON SB.bandId = B.bandId
+                                WHERE B.name = \'{band}\';""")
+        return self.cursor.fetchall()
+
+    def SearchforBands(self, band):
+        self.cursor.execute(f"""SELECT B.name
+                                FROM Band B
+                                WHERE B.name LIKE \'%{band}%\';""")
+        return self.cursor.fetchall()
+
+    def SelectPlaylist(self):
+        self.cursor.execute("""SELECT playlistId FROM Playlist;""")
+        return self.cursor.fetchall()
+
+    def SelectPlaylistName(self, playlistID):
+        self.cursor.execute(f"""SELECT name
+                                FROM Playlist
+                                WHERE playlistId = \'{playlistID}\';""")
+        return self.cursor.fetchall()
+
+    def ViewPlaylistDuration (self, playlist):
+        self.cursor.execute(f"""SELECT TIME_TO_SEC(S.duration)
+                                FROM Songs S
+                                JOIN SongPlaylist SP on S.songId = SP.songId
+                                JOIN Playlist P on SP.playlistId = P.playlistId
+                                WHERE P.playlistId = \'{playlist}\';""")
         return self.cursor.fetchall()
 
     def UpdateConcert(self, concert, location, date):
@@ -97,7 +162,6 @@ class DatabaseConnection():
                                         JOIN Band B ON BA.bandId=B.bandId
                                         WHERE B.bandId = \'{id}\';""")
         return self.cursor.fetchall()
-
 
     def SelectSongsFromAlbum(self, id):
         self.cursor.execute(f"""SELECT S.name, S.lyrics FROM Songs S
