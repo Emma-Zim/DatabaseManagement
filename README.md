@@ -20,9 +20,20 @@ To run this application, it is recommended that the following steps are followed
 
 MacOS:
 
-1.Navigate to terminal
+1.Open terminal
 
+2. Navigate to project directory
+
+3. Pull files from GitHub
+
+4. Run command "python main.py" in terminal
 
 Windows OS:
 
-1.Open console
+1.Open command line
+
+2. Navigate to project directory
+
+3. Pull files from GitHub
+
+4. Run command "python main.py" in command line
