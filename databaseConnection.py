@@ -7,7 +7,11 @@ class DatabaseConnection():
 
     def CreateConnection(self):
         try:
+<<<<<<< HEAD
             connection = mysql.connector.connect(host='leia.cs.spu.edu', database='dengl_db', user='dengl', password='dengl12$4410X')
+=======
+            connection = mysql.connector.connect(host='leia.cs.spu.edu', database='sandvickk_db', user='sandvickk', password='sandvickk16$4410X')
+>>>>>>> 19bdcbc9d356dfb241bebc22e2ad88747c22b382
             return connection
 
         except mysql.connector.Error as failure:
@@ -29,32 +33,55 @@ class DatabaseConnection():
         return self.cursor.fetchall()
 
     def SelectConcertValues(self, id):
-        self.cursor.execute(f"""SELECT location, date FROM Concert WHERE concertId = \'{id}\';""")
+        self.cursor.execute("""SELECT location, date FROM Concert WHERE concertId = \'{}\';""".format(id))
         return self.cursor.fetchall()
 
     def SelectConcertArtist(self, id):
-        self.cursor.execute(f"""SELECT B.name FROM Band B
+        self.cursor.execute("""SELECT B.name FROM Band B
                                         JOIN BandConcert BC ON BC.bandId = B.bandId
                                         JOIN Concert C ON C.concertId = BC.concertId
-                                        WHERE C.concertId = \'{id}\';""")
+                                        WHERE C.concertId = \'{}\';""".format(id))
         return self.cursor.fetchall()
 
     def SelectConcertSongs(self, concert):
-        self.cursor.execute(f"""SELECT S.name FROM Songs S
+        self.cursor.execute("""SELECT S.name FROM Songs S
                                 JOIN SongConcert SC ON S.songId = SC.songId
                                 JOIN Concert C ON C.concertId = SC.concertId
-                                WHERE C.concertId = \'{concert}\'
-                                ;""")
+                                WHERE C.concertId = \'{}\';""".format(concert))
         return self.cursor.fetchall()
 
     def RemoveFromConcert(self, concert):
-        self.cursor.execute(f"""DELETE FROM SongConcert WHERE concertId=\'{concert}\';
-                                        DELETE FROM BandConcert WHERE concertId=\'{concert}\';
-                                        DELETE FROM Concert WHERE concertId=\'{concert}\';""")
-        return self.cursor.fetchall()
+        print(concert)
+        if not self.cursor.execute("""DELETE FROM SongConcert WHERE concertId=\'{}\';""".format(concert)) and not self.cursor.execute("""DELETE FROM BandConcert WHERE concertId=\'{}\';""".format(concert)) and not self.cursor.execute("""DELETE FROM Concert WHERE concertId=\'{}\';""".format(concert)):
+            self.connection.commit()
+            return True
+        else:
+            return False
 
+<<<<<<< HEAD
     #def AddConcert(self, bands, songs, location, date):
         
+=======
+    def AddConcert(self, bands, songs, location, date):
+        # get the concertId
+        self.cursor.execute("""SELECT COUNT(concertId) FROM Concert;""")
+        concertVal = self.cursor.fetchone()[0] + 1
+        concertId = "C"
+        for x in range(0, 4 - len(str(concertVal))):
+            concertId = concertId + "0"
+        concertId = concertId + str(concertVal)
+
+        self.cursor.execute("""INSERT INTO Concert (concertId, location, date) VALUES (\'{}\', \'{}\', \'{}\');""".format(concertId, location, date))
+
+        for s in songs:
+            self.cursor.execute("""INSERT INTO SongConcert (concertId, songId) VALUES (\'{}\', \'{}\')""".format(concertId, s))
+
+        for b in bands:
+            self.cursor.execute("""INSERT INTO BandConcert (concertId, bandId) VALUES (\'{}\', \'{}\')""".format(concertId, b))
+
+        self.connection.commit()
+        return True
+>>>>>>> 19bdcbc9d356dfb241bebc22e2ad88747c22b382
 
     def SelectBands(self):
         self.cursor.execute("""SELECT name FROM Band;""")
@@ -93,6 +120,10 @@ class DatabaseConnection():
                                 WHERE A.name = \'{album}\';""")
         return self.cursor.fetchall()
 
+    def SelectAlbum(self):
+        self.cursor.execute("""SELECT * FROM Album;""")
+        return self.cursor.fetchall()
+
     def SelectSongs(self):
         self.cursor.execute("""SELECT name FROM Songs;""")
         return self.cursor.fetchall()
@@ -104,6 +135,7 @@ class DatabaseConnection():
                                 JOIN Band B ON SB.bandId = B.bandId
                                 WHERE B.name = \'{band}\';""")
         return self.cursor.fetchall()
+<<<<<<< HEAD
     
     def SearchforAlbums(self, band):
         self.cursor.execute(f"""SELECT A.name 
@@ -134,3 +166,32 @@ class DatabaseConnection():
     
 
 
+=======
+
+    def UpdateConcert(self, concert, location, date):
+        self.cursor.execute("""UPDATE Concert SET location = \'{}\', date = \'{}\' WHERE concertId = \'{}\';""".format(location, date, concert))
+        self.connection.commit()
+        return True
+
+    def SelectAlbumsFromBand(self, id):
+        self.cursor.execute(f"""SELECT A.name, A.recordingType FROM Album A
+                                        JOIN BandAlbum BA ON A.albumId=BA.albumId
+                                        JOIN Band B ON BA.bandId=B.bandId
+                                        WHERE B.bandId = \'{id}\';""")
+        return self.cursor.fetchall()
+
+
+    def SelectSongsFromAlbum(self, id):
+        self.cursor.execute(f"""SELECT S.name, S.lyrics FROM Songs S
+                                        JOIN SongAlbum SA ON S.songId=SA.songId
+                                        JOIN Album A ON SA.albumId=A.albumId
+                                        WHERE A.albumId = \'{id}\';""")
+        return self.cursor.fetchall()
+
+    def SelectMembersFromBand(self, id):
+        self.cursor.execute(f"""SELECT A.name FROM Artist A
+                                        JOIN BandArtist BA ON A.artistId=BA.artistId
+                                        JOIN Band B ON B.bandId=BA.bandId
+                                        WHERE B.bandId = \'{id}\';""")
+        return self.cursor.fetchall()
+>>>>>>> 19bdcbc9d356dfb241bebc22e2ad88747c22b382
