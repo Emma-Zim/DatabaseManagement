@@ -7,7 +7,7 @@ class DatabaseConnection():
 
     def CreateConnection(self):
         try:
-            connection = mysql.connector.connect(host='leia.cs.spu.edu', database='sandvickk_db', user='sandvickk', password='sandvickk16$4410X')
+            connection = mysql.connector.connect()
             return connection
 
         except mysql.connector.Error as failure:
